@@ -1,0 +1,48 @@
+<div class="details">
+
+  <div class="title-section">
+    <div class="lead">
+      <%= @category.name %>
+    </div>
+
+    <div class="">
+      <%= @category.description %>
+    </div><br>
+  </div>
+
+  <% if current_user %>
+    <% if current_user.badge(@category) %>
+    <div class="lead col-centered text-center" >
+      உங்கள் நிலை - <span class="highlighted"><%= current_user.badge(@category) %></span>
+    </div><br>
+    <% end %>
+
+    <div class="content-section col-centered">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="lead">நிலை</th>
+            <th class="lead">தொகுப்பு </th>
+            <th class="lead">மதிப்பெண்</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @category.levels.each do |level| %>
+            <tr class="<%= 'muted' unless can_play?(level) %>">
+              <td><%= level.rank %></td>
+              <td><%= level.name %></td>
+              <td><%= @category.question_sets.filter_by_level(level.id).count %></td>
+              <td><%= score(@category, level) %></td>
+              <td><%= can_play?(level) ? link_to("காண்", level_path(level.id)) : "Locked" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    log in
+  <% end %>
+
+</div>

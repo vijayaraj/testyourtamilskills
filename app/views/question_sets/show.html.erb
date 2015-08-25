@@ -1,0 +1,51 @@
+<div class="title-section">
+  <div class="breadcrumb">
+    <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
+  </div>
+  
+  <div>
+    <div class="lead pull-left"><%= @question_set.name %></div>
+    <% if @question_set.owner?(current_user) and !@question_set.approved? %>
+      <%= link_to "Add", new_question_set_question_path(@question_set.id), :class => "btn btn-primary pull-right" %>
+      <%= link_to "View", question_set_questions_path(@question_set.id), :class => "btn btn-primary pull-right" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="content-section">
+  <br>
+  <div class="form-group">
+    <label class="col-sm-4" for="name">பெயர்</label>
+    <div class="col-sm-4"><%= @question_set.name %></div>
+  </div><br>
+
+  <div class="form-group">
+    <label class="col-sm-4" for="name">இனம்</label>
+    <div class="col-sm-4"><%= @question_set.category.name %></div>
+  </div><br>
+
+  <div class="form-group">
+    <label class="col-sm-4" for="name">நிலை</label>
+    <div class="col-sm-4"><%= @question_set.level.name %></div>
+  </div><br>
+
+  <div class="form-group">
+    <label class="col-sm-4" for="name">கேள்விகள்</label>
+    <div class="col-sm-4"><%= @question_set.questions.count %> / 15</div>
+  </div><br>
+
+  <% if @user_question_set and @user_question_set.completed? %>
+    <div class="form-group">
+      <label class="col-sm-4" for="name">உங்கள் மதிப்பெண்கள்</label>
+      <div class="col-sm-4"><%= %(#{@user_question_set.score} (#{15 - @user_question_set.score.to_i} தவறுகள்)) %></div>
+    </div><br>
+  <% end %>
+  
+  <% if @question_set.owner %>
+    <div class="form-group">
+      <label class="col-sm-4" for="name">கொடுத்தவர்</label>
+      <div class="col-sm-4"><%= @question_set.owner.name %></div>
+    </div><br>
+  <% end %>
+  
+</div>

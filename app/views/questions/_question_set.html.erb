@@ -1,0 +1,26 @@
+<div class="tab-content">
+  <% p @questions %>
+  <% @questions.each_with_index do |question, index| %>
+    
+    <div class='tab-pane <%= (index+1).eql?(1) ? "active" : "" %>' id='question-<%= index %>'> 
+      <p><%= question.question %></p>
+
+      <div class="choice-section">
+        <% question.randomized_choices.each do |choice| %>
+          <label>
+            <%= radio_button_tag("choices[#{question.id}]", choice, question.answer.eql?(choice)) %> 
+            <span class="choice-label"><%= choice %></span>
+          </label><br>
+        <% end %>
+      </div><br>
+      
+      <% unless index == 0 %>
+        <%= link_to "< முன்", "#question-#{index-1}", { :class => "question-switch btn btn-primary pull-left", "data-toggle" => "tab", "data-question-no" => "#{index}" } %>
+      <% end %>
+      
+      <% unless index == @questions.length - 1 %>
+        <%= link_to "பின் >", "#question-#{index+1}", { :class => "question-switch btn btn-primary pull-right", "data-toggle" => "tab", "data-question-no" => "#{index+2}" } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,45 @@
+<div class="title-section">
+  <div class="breadcrumb">
+    <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
+  </div>
+  <div class="lead text-center" id="question-no"><span class="highlighted">வினா 1</span></div>
+</div>
+
+<div class="content-section col-centered">
+  <% if @user_question_set %>
+    <%= render :partial => "question_set_form" %>
+  <% else %>
+    <%= render :partial => "question_set" %>
+  <% end %>
+</div>
+
+<div class="pagination-section hide-in-mobile">
+  <ul class="pagination">
+    <% (1..15).to_a.each do |i| %>
+      <li class="<%= i.eql?(1) ? "active" : "" %>" id="question-page-<%= i %>">
+        <%= link_to i, "#question-#{i-1}", :class => "question-page-switch", "data-toggle" => "tab", "data-question-no" => "#{i}" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<script>
+  jQuery(document).ready(function() { 
+    jQuery(".question-switch").on('click', function(event){
+      var questionNo = $(this).data("question-no");
+      updateTitle(questionNo);
+      jQuery(".pagination li").removeClass("active");
+      jQuery("#question-page-"+questionNo).addClass("active");
+    });
+
+    jQuery(".question-page-switch").on('click', function(event){
+      var questionNo = $(this).data("question-no");
+      updateTitle(questionNo);
+    });
+
+    function updateTitle(questionNo){
+      jQuery("#question-no span").html("வினா " + questionNo)
+    }
+  })
+</script>
+

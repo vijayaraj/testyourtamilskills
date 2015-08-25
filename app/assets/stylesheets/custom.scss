@@ -1,0 +1,206 @@
+// @import "bootstrap";
+
+// Fonts
+/*@font-face {
+  font-family: "RRJanaTamil";
+  src: url(/assets/fonts/RRJanaTamil.ttf) format("truetype");
+}*/
+
+body{
+  /*font-family: "RRJanaTamil" !important;*/
+  line-height: 1.7 !important;
+  font-size: 15px !important;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.highlighted{
+  background-color: #5f5f5f;
+  color: #FFF;
+  padding: 2px;
+}
+
+a{
+  color: #06C;
+}
+a.active{
+  text-decoration: none;
+  color: #06C;
+}
+a:hover{
+  text-decoration: none;
+  color: #06C;
+}
+
+.btn.btn-primary{
+  background-color: #5f5f5f;
+  :hover{
+    background-color: #5f5f5f;
+  }
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+  background-color: #5f5f5f;
+  border-color: #5f5f5f;
+}
+.pagination>li>a, .pagination>li>span{
+  color: #333;
+}
+
+.breadcrumb {
+  margin-top: -15px;
+  margin-bottom: 15px;
+  padding: 0px;
+  background: none;
+}
+
+.muted{
+  color: #999;
+  cursor: not-allowed;
+}
+
+
+// Layout
+.container{
+  border-left: 1px solid #F0F0F0;
+  border-right: 1px solid #F0F0F0;
+
+  .content{
+    margin: 100px -15px 100px -15px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+    height: 500px;
+
+    @media only screen and (min-width: 768px) {
+      .right-content{
+        float: right;
+        width: 75%;
+        padding: 25px;
+        height: 500px;
+      }
+      .sidebar{
+        float: left;
+        width: 25%;
+        height: 500px;
+        border-right: 1px solid #F0F0F0;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      .right-content{
+        padding: 20px;
+        height: 100%;
+      }
+    }
+  }
+}
+
+// Sidebar
+.sidebar{
+  font-size: 16px;
+
+  .list-group-item:first-child, .list-group-item:last-child{
+    border-radius: 0;
+  }
+
+  .list-group-item:first-child{
+    border-top: none;
+  }
+
+  .list-group-item{
+    padding: 12px 20px;
+    border-left: none;
+    border-right: none;
+  }
+
+  .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+    background-color: #5f5f5f;
+    border-color: #5f5f5f;
+  }
+
+  .menu-btn div {
+    position: absolute;
+    left: 100%;
+    top: 64%;
+    padding-right: 8px;
+    margin-top: -0.50em;
+    line-height: 1.2;
+    font-size: 18px;
+    font-weight: 200;
+    vertical-align: middle;
+    z-index: 99;
+  }
+   
+  .menu-btn span {
+    display: block;
+    width: 19px;
+    height: 3px;
+    margin: 4px 0;
+    background: #5f5f5f;
+    z-index: 99;
+  }
+      
+  .expand {
+    display: block !important; 
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .responsive-menu { display: block; }
+  .show-in-mobile { display: none; }
+  .hide-in-mobile { display: block; }
+}
+
+@media only screen and (max-width: 767px) {
+  .responsive-menu { display: none; }
+  .show-in-mobile { display: block; }
+  .hide-in-mobile { display: none; }
+}
+
+// Right content
+.right-content{
+  
+  .title-section{
+    height: 20%;
+  }
+  .content-section{
+    font-size: 17px;
+    height: 69%;
+    @media only screen and (min-width: 768px) {
+      padding: 10px 90px;
+    }
+    .choice-section{
+      margin-left: 50px;
+      margin-top: 20px;
+      span.choice-label{
+        padding: 10px;
+        font-weight: 100;
+      }
+    }
+  }
+  .pagination-section{
+    // Pagination
+    .pagination {
+      margin: 37px -26px;
+    }
+    .pagination>li:first-child>a, .pagination>li:first-child>span{
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px
+    }
+
+    .pagination>li:last-child>a, .pagination>li:last-child>span{
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px
+    }
+
+    .pagination>li>a, .pagination>li>span{
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 18px;
+      padding: 12px 21.72px;
+    }
+    
+  }
+}
+

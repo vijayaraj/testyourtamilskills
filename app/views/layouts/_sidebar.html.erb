@@ -1,0 +1,27 @@
+<div class="mobile-nav">
+  
+  <div class="show-in-mobile menu-btn" id="menu-btn">
+    <div></div>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  
+  <div class="responsive-menu">
+    
+    <% sidebar_list.each do |list| %>
+      <%= list.html_safe %>
+    <% end %>
+    
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  jQuery(function($){
+    $('.menu-btn' ).click(function(){
+      $('.responsive-menu').toggleClass('expand');
+      
+    })
+  })
+</script>

@@ -1,0 +1,10 @@
+<div class="header">
+  <div class="pull-left"><h2>தமிழ்</h2></div>
+  <div class="pull-right">
+    <% if current_user %>
+      <%= current_user.name %>
+    <% else %>
+      <%= link_to "O", user_omniauth_authorize_path(:google_oauth2) %>
+    <% end %>
+  </div>
+</div>

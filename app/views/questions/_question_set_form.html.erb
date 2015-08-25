@@ -1,0 +1,43 @@
+<%= form_tag user_question_set_path(@user_question_set.id), :method => :put do %>
+  <%= hidden_field_tag :question_set_id, @question_set.id %>
+    
+  <div class="tab-content">
+    <% @questions.each_with_index do |question, index| %>
+      
+      <div class='tab-pane <%= (index+1).eql?(1) ? "active" : "" %>' id='question-<%= index %>'> 
+        <p><%= question.question %></p>
+
+        <div class="choice-section">
+          <% ans = user_answer(@user_question_set, question) %>
+
+          <% question.randomized_choices.each do |choice| %>
+            <% if ans and ans.eql?(choice) %>
+              <label>
+                <%= radio_button_tag("choices[#{question.id}]", choice, true) %> 
+                <span class="choice-label"><%= choice %></span>
+              </label>
+            <% else %>
+              <label>
+                <%= radio_button_tag("choices[#{question.id}]", choice, false) %> 
+                <span class="choice-label"><%= choice %></span>
+              </label>
+            <% end %><br>
+          <% end %>
+        </div><br>
+        
+        <% unless index == 0 %>
+          <%= link_to "< முன்", "#question-#{index-1}", { :class => "question-switch btn btn-primary pull-left", "data-toggle" => "tab", "data-question-no" => "#{index}" } %>
+        <% end %>
+        
+        <% unless index == @questions.length - 1 %>
+          <%= link_to "பின் >", "#question-#{index+1}", { :class => "question-switch btn btn-primary pull-right", "data-toggle" => "tab", "data-question-no" => "#{index+2}" } %>
+        <% end %>
+        
+        <% if @user_question_set.in_progress? and index == 14 %>
+          <%= submit_tag "முடி", :class => "btn btn-danger pull-right" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+<% end %>
