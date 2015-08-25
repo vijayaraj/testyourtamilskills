@@ -66,7 +66,6 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.18)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -83,6 +82,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -150,9 +150,9 @@ DEPENDENCIES
   hashie
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2
   omniauth
   omniauth-google-oauth2
+  pg
   rails (= 4.1.10)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

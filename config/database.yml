@@ -25,4 +25,10 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
   database: tamilgrammar_prod
+  username: root
+  password:

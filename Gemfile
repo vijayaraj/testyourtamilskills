@@ -19,7 +19,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'hashie'
 
-gem 'mysql2'
+# gem 'mysql2'
+gem 'pg'
 
 gem 'will_paginate', '~> 3.0.5'
 gem 'will_paginate-bootstrap'
