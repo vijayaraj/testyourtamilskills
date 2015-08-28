@@ -8,15 +8,21 @@ class ApplicationController < ActionController::Base
   before_filter :unset_current_user, :set_current_user
 
   def deny_access
-    unless authorized?
-      flash[:error] = "You are not allowed to access this page."
-      redirect_to root_path 
-    end
+    access_denied unless authorized?
   end
 
-  # def current_user
-  #   User.first
-  # end
+  def access_denied
+    flash[:error] = "You are not allowed to access this page."
+    redirect_to root_path 
+  end
+
+  def check_admin_or_superadmin_privileges
+    access_denied unless admin_or_superadmin?
+  end
+
+  def check_superadmin_privileges
+    access_denied unless superadmin?
+  end
 
   def authorized?
     current_user

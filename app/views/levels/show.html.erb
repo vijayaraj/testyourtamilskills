@@ -5,11 +5,11 @@
       <%= link_to(@category.name, category_path(@category.id)) %> / <%= @level.name %>
     </div>
     <div class="lead"><%= @level.name %></div>
-    <div class=""><%= @level.category.description %></div><br>
+    <div class=""><p><%= @level.category.description %></p></div><br>
   </div>
 
   <% unless level_allowed? %>
-    DOne
+    <%= t("levels.not_allowed") %>
   <% else %>
     <div class="content-section col-centered">
       <table class="table table-responsive table-hover">
@@ -19,45 +19,40 @@
             <% status = current_user.question_set_status(question_set) %>
             <tr>
               <td><%= question_set.name %></td>
-              <% unless current_user.published_question_sets.include?(question_set) %>
-                <td><%= play_status(status) %></td>
-                <td><%= current_user.question_set_score(question_set) %> புள்ளிகள்</td>
-                
-                <% unless status %>
-                  <td><a href="#" data-toggle="modal" data-target="#quiz-start-modal-<%= question_set.id %>"><%= fetch_action(status) %></a></td>
-                <% else %>
-                  <td><a href="<%= question_set_questions_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
-                <% end %>
-            
-                <!-- Modal -->
-                <div id="quiz-start-modal-<%= question_set.id %>" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <%= form_tag user_question_sets_path do %>
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Modal Header</h4>
-                        </div>
-
-                        <div class="modal-body">
-                          <%= hidden_field_tag :question_set_id, question_set.id %>
-                        </div>
-
-                        <div class="modal-footer">
-                          <%= submit_tag "Play", :class => "btn btn-primary" %>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
+              <td><i class="fa <%= play_status(status) %>"></i></td>
+              <td><%= current_user.question_set_score(question_set) %> <%= t("score") %></td>
+              
+              <% unless status %>
+                <td><a href="#" data-toggle="modal" data-target="#quiz-start-modal-<%= question_set.id %>"><%= fetch_action(status) %></a></td>
               <% else %>
-                <td>You cannot play.</td>
-                <td>NA</td>
-                <td><a href="<%= question_set_questions_path(question_set.id) %>" class="">Preview</a></td>
+                <td><a href="<%= question_set_questions_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
               <% end %>
+          
+              <!-- Modal -->
+              <div id="quiz-start-modal-<%= question_set.id %>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <%= form_tag user_question_sets_path do %>
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><%= %(#{@level.category.name} - #{@level.name} - #{question_set.name}) %></h4>
+                      </div>
+
+                      <div class="modal-body">
+                        <%= t("levels.start_quiz_text") %>
+                        <%= hidden_field_tag :question_set_id, question_set.id %>
+                      </div>
+
+                      <div class="modal-footer">
+                        <%= submit_tag t("actions.play"), :class => "btn btn-primary" %>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t("actions.close") %></button>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
             </tr>
           <% end %>
         </tbody>

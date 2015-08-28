@@ -12,4 +12,8 @@ module QuestionSetsHelper
     user_question_set.answers[question.id.to_s] if user_question_set.answers
   end
 
+  def questions_count(question_set)
+    %(#{question_set.questions.count} / 15)
+  end
+
 end

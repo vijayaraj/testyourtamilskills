@@ -8,17 +8,17 @@
 <div class="content-section">
   
   <div class="form-group">
-    <label class="col-sm-2" for="name">பெயர்</label>
+    <label class="col-sm-2" for="name"><%= t("question") %></label>
     <div class="col-sm-4"><%= @question.question %></div>
   </div><br>
 
   <div class="form-group">
-    <label class="col-sm-2" for="name">இனம்</label>
+    <label class="col-sm-2" for="name"><%= t("answer") %></label>
     <div class="col-sm-4"><%= @question.answer %></div>
   </div><br>
 
   <div class="form-group">
-    <label class="col-sm-2" for="name">நிலை</label>
+    <label class="col-sm-2" for="name"><%= t("questions.new.choices") %></label>
     <div class="col-sm-4"><%= @question.choices %></div>
   </div><br>
   

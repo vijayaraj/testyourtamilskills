@@ -2,10 +2,10 @@ class QuestionsController < ApplicationController
   
   before_filter :deny_access
   before_filter :admin_or_superadmin?, :set_question_set, :check_count, :except => :index
-  before_filter :set_params, :time_started?, :check_question_set?, :only => :index
+  before_filter :set_params, :time_started?, :only => :index
+  before_filter :set_question_sets_tab, :except => :index
 
   def new
-    @selected_tab = :new_question_set
     @question = scoper.new
   end
 
@@ -13,10 +13,10 @@ class QuestionsController < ApplicationController
     @question = scoper.new(question_params)
 
     if @question.save
-      flash[:notice] = "Done"
+      flash[:notice] = I18n.t("notifications.success")
       redirect_to new_question_set_question_path(@question_set.id)
     else
-      flash[:notice] = "Error"
+      flash[:notice] = I18n.t("notifications.error")
       redirect_to question_set_questions_path(@question_set.id)
     end
   end
@@ -29,10 +29,10 @@ class QuestionsController < ApplicationController
     @question = scoper.find_by_id(params[:id])
 
     if @question.update_attributes(question_params)
-      flash[:notice] = "Done"
+      flash[:notice] = I18n.t("notifications.success")
       redirect_to question_set_questions_path(@question_set.id)
     else
-      flash[:notice] = "Error"
+      flash[:notice] = I18n.t("notifications.error")
       redirect_to question_set_questions_path(@question_set.id)
     end
   end
@@ -44,10 +44,6 @@ class QuestionsController < ApplicationController
   def show
     @question = scoper.find_by_id(params[:id])
     @selected_tab = :question_sets
-  end
-
-  def list
-    @questions = scoper
   end
 
   private
@@ -85,20 +81,15 @@ class QuestionsController < ApplicationController
       end
     end
 
-    def check_question_set?
-      # if current_user.published_question_sets.include?(@question_set)
-      #   flash[:notice] = "No access"
-      #   redirect_to root_path
-      # end
-    end
-
     def check_count
-      if @question_set.questions.count >= 15
-        redirect_to question_set_path(@question_set.id)
-      end
+      redirect_to question_set_path(@question_set.id) if @question_set.questions.count >= 15
     end
 
     def question_params
       params.require(:question).permit(:question, :answer, :choices => [])
+    end
+
+    def set_question_sets_tab
+      @selected_tab = :question_sets
     end
 end

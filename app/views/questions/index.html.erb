@@ -2,7 +2,7 @@
   <div class="breadcrumb">
     <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
   </div>
-  <div class="lead text-center" id="question-no"><span class="highlighted">வினா 1</span></div>
+  <div class="lead text-center" id="question-no"><span class="highlighted"><%= t("question") %> 1</span></div>
 </div>
 
 <div class="content-section col-centered">
@@ -38,7 +38,7 @@
     });
 
     function updateTitle(questionNo){
-      jQuery("#question-no span").html("வினா " + questionNo)
+      jQuery("#question-no span").html("<%=  t('question') %> " + questionNo)
     }
   })
 </script>

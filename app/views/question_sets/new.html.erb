@@ -1,34 +1,38 @@
 <div class="title-section">
-  <div class="lead">கேள்வி தொகுப்பு</div>
+  <div class="breadcrumb">
+    <%= link_to(t("question_sets.index.title"), question_sets_path) %> / <%= t("question_set") %>
+  </div>
+  <div class="lead"><%= t("question_set") %></div>
 </div>
 
 <div class="content-section">
   
   <%= form_for(@question_set , :html => { :class => "form-horizontal", "role" => "form" }) do |form| %>
     <div class="form-group">
-      <label class="col-sm-2" for="name">பெயர்</label>
+      <label class="col-sm-2" for="name"><%= t("question_sets.headers.name") %></label>
       <div class="col-sm-4">
-        <%= form.text_field :name, :placeholder => "Name", :required => true, :class => "form-control", :size => "25" %>
+        <%= form.text_field :name, :placeholder => t("question_sets.headers.one_or_two_words"), :required => true, :class => "form-control", :size => "25" %>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2" for="category_id">பிரிவு</label>
+      <label class="col-sm-2" for="category_id"><%= t("category") %></label>
       <div class="col-sm-4">
         <%= form.select :category_id, options_for_select(category_list), :required => true, :class => "form-control" %>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2" for="level_id">நிலை</label>
+      <label class="col-sm-2" for="level_id"><%= t("level") %></label>
       <div class="col-sm-4">
         <%= form.select :level_id, options_for_select(level_list), :required => true, :class => "form-control" %>
       </div>
-    </div>
+    </div><br>
 
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= form.submit "செய்", :class => "btn btn-primary" %>
+      <div class="col-sm-offset-1">
+        <%= form.submit t("actions.create"), :class => "btn btn-primary" %>
+        <%= link_to(t("actions.close"), question_sets_path, :class => "btn btn-default") %>
       </div>
     </div>
   <% end %>

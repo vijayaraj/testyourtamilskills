@@ -8,11 +8,6 @@ class LevelsController < ApplicationController
   end
 
   private
-    # def scoper
-    #   @category = Category.find_by_id(params[:category_id])
-    #   @category ? @category.levels : raise(ActiveRecord::RecordNotFound)
-    # end
-
     def set_params
       @level = Level.find_by_id(params[:id])
       @category = @level.category

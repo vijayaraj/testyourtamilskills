@@ -8,7 +8,6 @@
   <%= csrf_meta_tags %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="print.css" media="print">
 </head>
 
 <body>
@@ -20,6 +19,11 @@
         <%= render "layouts/sidebar" %>
       </div>
       <div class="right-content">
+        <% flash.each do |key, value| %>
+          <div class="alert <%= key %>">
+            <%= value %><a class="close" data-dismiss="alert" href="#">&times;</a>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
     </div>

@@ -26,15 +26,15 @@
         </div><br>
         
         <% unless index == 0 %>
-          <%= link_to "< முன்", "#question-#{index-1}", { :class => "question-switch btn btn-primary pull-left", "data-toggle" => "tab", "data-question-no" => "#{index}" } %>
+          <%= link_to "< #{t('actions.previous')}", "#question-#{index-1}", { :class => "question-switch btn btn-primary pull-left", "data-toggle" => "tab", "data-question-no" => "#{index}" } %>
         <% end %>
         
         <% unless index == @questions.length - 1 %>
-          <%= link_to "பின் >", "#question-#{index+1}", { :class => "question-switch btn btn-primary pull-right", "data-toggle" => "tab", "data-question-no" => "#{index+2}" } %>
+          <%= link_to "#{t('actions.next')} >", "#question-#{index+1}", { :class => "question-switch btn btn-primary pull-right", "data-toggle" => "tab", "data-question-no" => "#{index+2}" } %>
         <% end %>
         
         <% if @user_question_set.in_progress? and index == 14 %>
-          <%= submit_tag "முடி", :class => "btn btn-danger pull-right" %>
+          <%= submit_tag "#{t('actions.end')} >", :class => "btn btn-danger pull-right" %>
         <% end %>
       </div>
     <% end %>

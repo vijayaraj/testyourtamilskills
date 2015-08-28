@@ -1,33 +1,41 @@
   <%= form_for(@question, :url => question_set_questions_path, :html => { :class => "form-horizontal", "role" => "form" }) do |form| %>
 
     <div class="form-group">
-      <label for="name">கேள்வி</label><br>   
+      <label for="name"><%= t("question") %></label>
+      <br>   
       <div class="col-lg-12">
-        <%= form.text_area :question, :placeholder => "Name", :required => true, :class => "form-control", :size => "25" %><br>
+        <%= form.text_area :question, :placeholder => t("questions.new.one_or_two_lines"), :required => true, :class => "form-control", :size => "25" %>
+        <br>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="name">விடை</label><br>
+      <label for="name"><%= t("questions.new.choices") %></label>
+      <br>
       <div class="col-lg-4">
-        <%= form.text_field :answer, :placeholder => "விடை", :required => true, :class => "form-control" %>
+        <%= form.text_field :answer, :placeholder => t("answer"), :required => true, :class => "form-control" %>
+        <br>
       </div>
       <div class="col-lg-4">
-        <%= form.text_field :choices, :placeholder => "Choice 2", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 1", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <br>
       </div>
       <div class="col-lg-4">
-        <%= form.text_field :choices, :placeholder => "Choice 3", :required => true, :class => "form-control", :name => "question[choices][]" %>
-      </div><br><br>
-      <div class="col-lg-4">
-        <%= form.text_field :choices, :placeholder => "Choice 4", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 2", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <br>
       </div>
       <div class="col-lg-4">
-        <%= form.text_field :choices, :placeholder => "Choice 5", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 3", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <br>
       </div>
-    </div><br>
+      <div class="col-lg-4">
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 4", :class => "form-control", :name => "question[choices][]" %>
+        <br>
+      </div>
+    </div>
     
     <div class="form-group">
-      <%= form.submit "செய்", :class => "btn btn-primary pull-right" %>
+      <%= form.submit t("actions.create"), :class => "btn btn-primary pull-right" %>
     </div>
 
   <% end %>

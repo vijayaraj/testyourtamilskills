@@ -1,16 +1,9 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-// Fonts
-/*@font-face {
-  font-family: "RRJanaTamil";
-  src: url(/assets/fonts/RRJanaTamil.ttf) format("truetype");
-}*/
-
-body{
-  /*font-family: "RRJanaTamil" !important;*/
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,700italic,900,400italic,300");
+body {
+  color: #34495e;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
   line-height: 1.7 !important;
-  font-size: 15px !important;
 }
 
 .col-centered{
@@ -25,15 +18,18 @@ body{
 }
 
 a{
-  color: #06C;
+  color: #5f5f5f;
+  font-style: italic;
 }
 a.active{
   text-decoration: none;
-  color: #06C;
+  color: #5f5f5f;
+  font-style: italic;
 }
 a:hover{
   text-decoration: none;
-  color: #06C;
+  color: #5f5f5f;
+  font-weight: 600;
 }
 
 .btn.btn-primary{
@@ -56,6 +52,13 @@ a:hover{
   margin-bottom: 15px;
   padding: 0px;
   background: none;
+  a { font-style: normal; }
+}
+
+.alert{
+  border: 1px solid #F0F0F0;
+  padding: 5px;
+  background-color: #F0F0F0;
 }
 
 .muted{
@@ -101,6 +104,7 @@ a:hover{
 // Sidebar
 .sidebar{
   font-size: 16px;
+  a { font-style: normal; }
 
   .list-group-item:first-child, .list-group-item:last-child{
     border-radius: 0;
@@ -183,6 +187,7 @@ a:hover{
   }
   .pagination-section{
     // Pagination
+    a { font-style: normal; }
     .pagination {
       margin: 37px -26px;
     }

@@ -1,0 +1,54 @@
+ta:
+  score: புள்ளிகள்
+  question_set: கேள்வி தொகுப்பு
+  question: கேள்வி
+  category: பிரிவு
+  level: நிலை
+  answer: விடை
+  
+  actions:
+    view: காண்
+    play: துவங்கு
+    end: முடிவுறு
+    resume: மீண்டும் துவங்கு
+    close: பின் செல்
+    create: இயற்று
+    previous: முன்
+    next: பின்
+    edit: திருத்து
+
+  notifications:
+    success: செய்தாயிற்று
+    error: பிசகு
+  
+  categories: 
+    your_level: உங்கள் நிலை
+  
+  levels:
+    not_allowed: முந்தைய நிலையை முடியுங்கள் 
+    progress:
+      in_progress: நிலுவை
+      success: செய்தாயிற்று
+      failure: பிசகு
+      not_started: ""
+    start_quiz_text: ""
+
+  question_sets:
+    index:
+      title: என் கேள்வி தொகுப்புகள்
+      question: வினா
+    headers:
+      name: பெயர்
+      count: கேள்விகள்
+      owner: உரிமையாளர்
+      your_score: உங்கள் மதிப்பெண்கள்
+      one_or_two_words: ஓரிரண்டு வார்த்தைகளில் 
+  questions:
+    title: கேள்விகள்
+    new:
+      choices: தெரிவுகள்
+      choice: தெரிவு
+      name: பெயர்
+      one_or_two_lines: ஓரிரு வரிகளில் 
+      choice_text: ""
+

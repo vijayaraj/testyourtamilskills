@@ -1,8 +1,8 @@
 class QuestionSetsController < ApplicationController
 
   before_filter :deny_access
-  before_filter :admin_or_superadmin?, :only => [:new, :create]
-  before_filter :superadmin?, :only => :approve
+  before_filter :check_admin_or_superadmin_privileges, :only => [:new, :create, :index, :show]
+  before_filter :check_superadmin_privileges, :only => :approve
 
   def new
     @selected_tab = :new_question_set
@@ -14,10 +14,10 @@ class QuestionSetsController < ApplicationController
     @question_set.approved = false
 
     if @question_set.save
-      flash[:notice] = "Done"
+      flash[:notice] = I18n.t("notifications.success")
       redirect_to question_set_path(@question_set.id)
     else
-      flash[:notice] = "Done"
+      flash[:notice] = I18n.t("notifications.error")
       redirect_to new_question_set_path
     end
   end
@@ -46,12 +46,12 @@ class QuestionSetsController < ApplicationController
 
   def index
     @selected_tab = :question_sets
-    @question_sets = current_user.published_question_sets
+    @question_sets = current_user.published_question_sets.paginate(:page => params[:page],:per_page => 7)
   end
 
   private
     def question_set_params
       params.require(:question_set).permit(:name, :category_id, :level_id, :published)
     end
-
+    
 end
