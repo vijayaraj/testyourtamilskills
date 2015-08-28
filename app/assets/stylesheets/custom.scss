@@ -66,30 +66,35 @@ a:hover{
   cursor: not-allowed;
 }
 
+.header, .footer{
+  min-height: 70px;
+  background-color: #F0F0F0;
+  padding: 15px 70px;
+  h2 { margin-top: 0px; }
+}
 
 // Layout
 .container{
   border-left: 1px solid #F0F0F0;
   border-right: 1px solid #F0F0F0;
-
+  
   .content{
-    margin: 100px -15px 100px -15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    height: 500px;
+    margin: 0px -15px 0px -15px;
+    /*border-top: 100px solid #F0F0F0;*/
+    /*border-bottom: 100px solid #F0F0F0;*/
+    /*height: 750px;*/
 
     @media only screen and (min-width: 768px) {
       .right-content{
         float: right;
         width: 75%;
         padding: 25px;
-        height: 500px;
+        border-left: 1px solid #F0F0F0;
+        height: 525px;
       }
       .sidebar{
         float: left;
         width: 25%;
-        height: 500px;
-        border-right: 1px solid #F0F0F0;
       }
     }
     @media only screen and (max-width: 768px) {
@@ -189,7 +194,7 @@ a:hover{
     // Pagination
     a { font-style: normal; }
     .pagination {
-      margin: 37px -26px;
+      margin: 38px -27px;
     }
     .pagination>li:first-child>a, .pagination>li:first-child>span{
       border-top-left-radius: 0px;

@@ -1,10 +1,11 @@
 <div class="header">
   <div class="pull-left"><h2>தமிழ்</h2></div>
+  
   <div class="pull-right">
     <% if current_user %>
-      <%= current_user.name %>
+      <i class="fa fa-power-off"> <%= current_user.name %></i>
     <% else %>
-      <%= link_to "O", user_omniauth_authorize_path(:google_oauth2) %>
+      <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-power-off" %>
     <% end %>
   </div>
 </div>
