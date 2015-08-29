@@ -3,7 +3,8 @@
   
   <div class="pull-right">
     <% if current_user %>
-      <i class="fa fa-power-off"> <%= current_user.name %></i>
+      <i class=""> </i>
+      <div class="_tooltip" data-placement="bottom" data-original-title="<%= t("question") %>"><%= current_user.name %></div>
     <% else %>
       <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-power-off" %>
     <% end %>

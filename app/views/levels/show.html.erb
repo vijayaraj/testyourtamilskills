@@ -19,7 +19,7 @@
             <% status = current_user.question_set_status(question_set) %>
             <tr>
               <td><%= question_set.name %></td>
-              <td><i class="fa <%= play_status(status) %>"></i></td>
+              <td><i class="fa <%= play_status_icon(status) %> _tooltip" data-placement="top" data-original-title='<%= t("levels.progress.#{play_status(status)}") %>'></i></td>
               <td><%= current_user.question_set_score(question_set) %> <%= t("score") %></td>
               
               <% unless status %>

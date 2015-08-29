@@ -1,7 +1,11 @@
 module LevelsHelper
 
-  def play_status(status)
+  def play_status_icon(status)
     status ? level_icons[UserQuestionSet::STATUS[status]] : level_icons[:not_started]
+  end
+
+  def play_status(status)
+    status ? UserQuestionSet::STATUS[status] : :not_started
   end
 
   def level_allowed?

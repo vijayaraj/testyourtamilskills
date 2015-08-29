@@ -4,7 +4,7 @@ module ApplicationHelper
     [
       ["சொல் வளம் (விரைவில்)", "vocabulary", "#", true],
       ["இலக்கணம் (விரைவில்)", "grammar", "#", true],
-      ["என் கேள்வி தொகுப்புகள்", "question_sets", question_sets_path, admin_or_superadmin?],
+      [I18n.t("question_sets.index.title"), "question_sets", question_sets_path, admin_or_superadmin?],
     ]
   end
   
