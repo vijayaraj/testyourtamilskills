@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
     access_denied unless superadmin?
   end
 
+  # Or use authenticate_user!
   def authorized?
     current_user
   end
@@ -39,18 +40,6 @@ class ApplicationController < ActionController::Base
   def superadmin?
     current_user and current_user.superadmin?
   end
-
-  # def require_no_user
-  #   if current_user
-  #     store_location
-  #     redirect_to root_path
-  #     return false
-  #   end
-  # end
-
-  # def store_location
-  #   session[:return_to] = request.fullpath
-  # end
 
   def unset_current_user
     Thread.current[:user] = nil

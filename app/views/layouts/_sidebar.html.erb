@@ -1,18 +1,15 @@
 <div class="mobile-nav">
-  
-  <div class="show-in-mobile menu-btn" id="menu-btn">
+  <div class="show-in-mobile menu-btn pull-left" id="menu-btn">
     <div></div>
     <span></span>
     <span></span>
-    <span></span>
+    <span></span><br>
   </div>
   
   <div class="responsive-menu">
-    
     <% sidebar_list.each do |list| %>
       <%= list.html_safe %>
-    <% end %>
-    
+    <% end %><br><br>
   </div>
 </div>
 
@@ -21,7 +18,6 @@
   jQuery(function($){
     $('.menu-btn' ).click(function(){
       $('.responsive-menu').toggleClass('expand');
-      
     })
   })
 </script>

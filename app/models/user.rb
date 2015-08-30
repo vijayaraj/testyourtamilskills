@@ -6,7 +6,13 @@ class User < ActiveRecord::Base
     3 => :enduser
   }
 
-  BADGES = [:rookie, :apprentice, :assasin, :master, :god]
+  BADGES = {
+    :rookie => 0..25, 
+    :apprentice => 26..40, 
+    :scholar => 41..50, 
+    :master => 51..64, 
+    :god => 65..75
+  }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -14,15 +20,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   
   has_many :identities
-
-  # has_and_belongs_to_many :achieved_levels,
-  #   :class_name => "Level",
-  #   :join_table => "user_levels", 
-  #   :autosave => true
-  
   has_many :published_question_sets,
     :class_name => "QuestionSet"
-  
   has_many :user_question_sets
   has_many :answered_question_sets,
     :through => "user_question_sets",
@@ -48,11 +47,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def score(category, level)
-    question_sets = level.question_sets.filter_by_category(category.id)
-    question_sets.map(&:score).max
-  end
-
   def filter_user_question_sets(category, level)
     user_question_sets.select{ 
       |uqs| uqs.question_set.category_id.eql?(category.id) and uqs.question_set.level_id.eql?(level.id) }
@@ -75,12 +69,8 @@ class User < ActiveRecord::Base
   end
 
   def badge(category)
-    case points(category)
-    when 0..25 then BADGES[0]
-    when 26..40 then BADGES[1]
-    when 41..50 then BADGES[2]
-    when 51..64 then BADGES[3]
-    when 65..75 then BADGES[4]
+    BADGES.each_pair do |badge, score|
+      return badge if score.to_a.include?(points(category))
     end
   end
 
@@ -90,5 +80,4 @@ class User < ActiveRecord::Base
     points
   end
 
-  
 end

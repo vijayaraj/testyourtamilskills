@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :levels
   
-  resources :question_sets do
+  resources "question-sets", :controller => "question_sets", :as => "question_sets" do
     post 'approve', on: :member
     
     resources :questions do

@@ -13,7 +13,7 @@
   <% if current_user %>
     <% if current_user.badge(@category) %>
     <div class="lead col-centered text-center" >
-      <%= t("categories.your_level") %> - <span class="highlighted"><%= current_user.badge(@category) %></span>
+      <%= t("categories.your_level") %> - <span class="highlighted"><%= t("badges.#{current_user.badge(@category)}") %></span>
     </div><br>
     <% end %>
 

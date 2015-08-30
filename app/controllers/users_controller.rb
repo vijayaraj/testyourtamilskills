@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def home
-    
+    @selected_tab = :rules
   end
 
   private

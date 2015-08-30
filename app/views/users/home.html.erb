@@ -1,5 +1,23 @@
+<div class="details">
+  <div class="home-section">
+    <p><%= t("home.hello") %></p>
+    <p><%= t("home.mission") %></p>
+    <p><%= t("home.rule_text") %></p>
+    <p><%= t("home.scoring") %></p><br>
 
-  Leftcontent
+    <table class="table table-striped table-hover col-centered">
+      <thead><tr></tr></thead>
+      <tbody>
+        <% User::BADGES.each_pair do |badge, score| %>
+          <tr class="text-center">
+            <td><%= %(#{score.to_a.first} - #{score.to_a.last} #{t("score")}) %></td>
+            <td><i class="fa fa-trophy"></i></td>
+            <td><%= t("badges.#{badge}") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table><br>
 
-
-
+    <p><%= t("home.contribution") %></p><br>
+  </div>
+</div>

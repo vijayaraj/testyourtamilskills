@@ -19,10 +19,8 @@ class Level < ActiveRecord::Base
 
   def previous_level_completed?
     return true unless previous_level
-    p previous_level.id
+    
     uqs = previous_level.user_question_sets.where("user_question_sets.user_id = ?", User.current.id)
-    p uqs
-    p uqs.select{ |set| set.completed? }
     uqs.present? and (uqs.select{ |set| set.completed? }).present? ? true : false
   end
   
