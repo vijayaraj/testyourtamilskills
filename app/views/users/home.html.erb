@@ -1,23 +1,74 @@
 <div class="details">
+  
   <div class="home-section">
-    <p><%= t("home.hello") %></p>
-    <p><%= t("home.mission") %></p>
-    <p><%= t("home.rule_text") %></p>
-    <p><%= t("home.scoring") %></p><br>
+    <div id="switch-lang" class="pull-right">
+      <ul>
+        <li class="lang active" id="ta">தமிழ்</li>
+        <li class="lang" id="en">english</li>
+      </ul>
+    </div><br>
+  
+    <div id="ta-content">
+      <p><%= t("home.hello") %></p>
+      <p><%= t("home.mission") %></p>
+      <p><%= t("home.rule_text") %></p>
+      <p><%= t("home.scoring") %></p><br>
 
-    <table class="table table-striped table-hover col-centered">
-      <thead><tr></tr></thead>
-      <tbody>
-        <% User::BADGES.each_pair do |badge, score| %>
-          <tr class="text-center">
-            <td><%= %(#{score.to_a.first} - #{score.to_a.last} #{t("score")}) %></td>
-            <td><i class="fa fa-trophy"></i></td>
-            <td><%= t("badges.#{badge}") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table><br>
+      <table class="table table-striped table-hover col-centered">
+        <thead><tr></tr></thead>
+        <tbody>
+          <% User::BADGES.each_pair do |badge, score| %>
+            <tr class="text-center">
+              <td><%= %(#{score.to_a.first} - #{score.to_a.last} #{t("score")}) %></td>
+              <td><i class="fa fa-trophy"></i></td>
+              <td><%= t("badges.#{badge}") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table><br>
 
-    <p><%= t("home.contribution") %></p><br>
+      <p><%= t("home.contribution") %></p><br>
+    </div>
+
+    <div id="en-content" class="hide">
+      <p><%= t("en-home.hello") %></p>
+      <p><%= t("en-home.mission") %></p>
+      <p><%= t("en-home.rule_text") %></p>
+      <p><%= t("en-home.scoring") %></p><br>
+
+      <table class="table table-striped table-hover col-centered">
+        <thead><tr></tr></thead>
+        <tbody>
+          <% User::BADGES.each_pair do |badge, score| %>
+            <tr class="text-center">
+              <td><%= %(#{score.to_a.first} - #{score.to_a.last} #{t("en-home.points")}) %></td>
+              <td><i class="fa fa-trophy"></i></td>
+              <td><%= t("en-badges.#{badge}") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table><br>
+
+      <p><%= t("en-home.contribution") %></p><br>
+    </div>
   </div>
 </div>
+
+<script>
+  jQuery(document).ready(function() { 
+    jQuery("#en").on("click", function(){
+      jQuery("#en").addClass("active");
+      jQuery("#ta").removeClass("active");
+      jQuery("#en-content").removeClass("hide");
+      jQuery("#ta-content").addClass("hide");
+      <%=  I18n.locale = :en %>
+    })
+    jQuery("#ta").on("click", function(){
+      jQuery("#ta").addClass("active");
+      jQuery("#en").removeClass("active");
+      jQuery("#ta-content").removeClass("hide");
+      jQuery("#en-content").addClass("hide");
+      <%=  I18n.locale = :ta %>
+    })
+  })
+</script>
