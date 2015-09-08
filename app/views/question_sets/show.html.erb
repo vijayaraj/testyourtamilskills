@@ -47,5 +47,8 @@
       <div class="col-sm-4"><%= @question_set.owner.name %></div>
     </div><br>
   <% end %>
-  
 </div>
+
+<% if current_user.published_question_sets.include?(@question_set) or (@user_question_set and @user_question_set.completed?) %>
+  <%= render "question_list" %>
+<% end %>

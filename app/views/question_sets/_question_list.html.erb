@@ -1,0 +1,63 @@
+<% if @questions.present? %>
+  <div class="title-section"><h3><%= t("questions.title") %></h3><br></div>
+  
+  <div class="questions-section">
+    <div class="panel-group" id="accordion">
+      <% @questions.each_with_index do |question, index| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div data-toggle="collapse" data-parent="#accordion" href="<%= %(#collapse#{index}) %>">
+              <h4 class="panel-title clickable">
+                <%= question.question %>
+                <% if @user_question_set %>
+                  <div class="pull-right col-lg-3">
+                    <%= t("question_sets.show.your_answer") %>:  <%= @user_question_set.answers[index.to_s] %>
+                  </div>
+                  <i class="pull-right col-lg-1 fa fa-check"></i>
+                <% end %>
+              </h4>
+            </div>
+          </div>
+          
+          <div id="<%= %(collapse#{index}) %>" class="panel-collapse collapse <%= index.eql?(0) ? 'in' : '' %>">
+            <div class="panel-body">
+              <% unless @user_question_set %> 
+                <%= link_to t('actions.edit'), edit_question_set_question_path(question.question_set.id, question.id), { :class => "pull-right" } %>
+              <% end %>
+              <div class="col-lg-4">
+                <%= radio_button_tag("choices#{index}[]", index, true, disabled: true) %> 
+                <span class="choice-div"><%= question.answer %></span>
+              </div>
+              <div class="col-lg-4">
+                <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
+                <%= question.choices[0] %>
+              </div>
+              <div class="col-lg-4">
+                <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
+                <%= question.choices[1] %>
+              </div><br>
+              <div class="col-lg-4">
+                <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>  
+                <%= question.choices[2] %>
+              </div>
+              <% if question.choices[3].present? %>
+                <div class="col-lg-4">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>   
+                  <%= question.choices[3] %>
+                </div>
+              <% end %>
+              
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="text-center">
+      <%= will_paginate @questions, :renderer => BootstrapPagination::Rails, 
+                                :previous_label => "<b class='arrow-left'><</b>",
+                                :next_label => "<b class='arrow-right'>></b>",
+                                :class => "pagination " %>
+    </div>
+  </div>
+<% end %>

@@ -41,6 +41,7 @@ class QuestionSetsController < ApplicationController
 
     @category = @question_set.category
     @level = @question_set.level
+    @questions = @question_set.questions.paginate(:page => params[:page],:per_page => 5)
     @user_question_set = User.current.user_question_sets.find_by_question_set_id(@question_set.id)
   end
 

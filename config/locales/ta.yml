@@ -4,7 +4,8 @@ ta:
   question: கேள்வி
   category: பிரிவு
   level: நிலை
-  answer: விடை
+  answer: பதில்
+  all_the_best: வாழ்த்துக்கள்
 
   badges:
     rookie: கற்றுக்குட்டி
@@ -78,6 +79,8 @@ ta:
       owner: உரிமையாளர்
       your_score: உங்கள் மதிப்பெண்
       one_or_two_words: ஓரிரண்டு வார்த்தைகளில் 
+    show:
+      your_answer: உங்கள் பதில்
   questions:
     title: கேள்விகள்
     new:

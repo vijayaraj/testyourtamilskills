@@ -25,7 +25,7 @@
         <%= radio_button_tag("choices[]", 2, false, disabled: true) %>
       </div>
       <div class="col-lg-5">
-        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 1", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 1", :required => true, :class => "form-control", :name => "question[choices][]", :value => @question.choices[0] %>
       </div>
     </div>
     
@@ -34,7 +34,7 @@
         <%= radio_button_tag("choices[]", 3, false, disabled: true) %>
       </div>
       <div class="col-lg-5">
-        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 2", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 2", :required => true, :class => "form-control", :name => "question[choices][]", :value => @question.choices[1] %>
       </div>
     </div>
     
@@ -43,7 +43,7 @@
         <%= radio_button_tag("choices[]", 4, false, disabled: true) %>
       </div>
       <div class="col-lg-5">
-        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 3", :required => true, :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 3", :required => true, :class => "form-control", :name => "question[choices][]", :value => @question.choices[2] %>
       </div>
     </div>
     
@@ -52,12 +52,12 @@
         <%= radio_button_tag("choices[]", 5, false, disabled: true) %>
       </div>
       <div class="col-lg-5">
-        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 4", :class => "form-control", :name => "question[choices][]" %>
+        <%= form.text_field :choices, :placeholder => "#{t("questions.new.choice")} 4", :class => "form-control", :name => "question[choices][]", :value => @question.choices[3] %>
       </div>
     </div><br>
     
     <div class="form-group">
-      <%= form.submit t("actions.create"), :class => "btn btn-primary pull-right" %>
+      <%= form.submit t("actions.edit"), :class => "btn btn-primary pull-right" %>
     </div>
 
   <% end %>

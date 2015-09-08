@@ -5,7 +5,7 @@
       <%= link_to(@category.name, category_path(@category.id)) %> / <%= @level.name %>
     </div>
     <div class="lead"><%= @level.name %></div>
-    <div class=""><p><%= @level.category.description %></p></div><br>
+    <div class=""><p><%= @level.description %></p></div><br>
   </div>
 
   <% unless level_allowed? %>
@@ -37,12 +37,35 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><%= %(#{@level.category.name} - #{@level.name} - #{question_set.name}) %></h4>
+                        <h4 class="modal-title"><%= %(#{question_set.name}) %></h4>
                       </div>
 
                       <div class="modal-body">
                         <%= t("levels.start_quiz_text") %>
+                        <div class="form-group">
+                          <label class="col-sm-3" for="name"><%= t("question_sets.headers.name") %></label>
+                          <div class="col-sm-3"><%= question_set.name %></div>
+                        </div><br>
+
+                        <div class="form-group">
+                          <label class="col-sm-3" for="name"><%= t("category") %></label>
+                          <div class="col-sm-3"><%= @level.category.name %></div>
+                        </div><br>
+
+                        <div class="form-group">
+                          <label class="col-sm-3" for="name"><%= t("level") %></label>
+                          <div class="col-sm-3"><%= @level.name %></div>
+                        </div><br>
+
+                        <% if question_set.owner %>
+                          <div class="form-group">
+                            <label class="col-sm-3" for="name"><%= t("question_sets.headers.owner") %></label>
+                            <div class="col-sm-3"><%= question_set.owner.name %></div>
+                          </div><br>
+                        <% end %>
+
                         <%= hidden_field_tag :question_set_id, question_set.id %>
+                        <div class="form-group col-sm-3"><%= t("all_the_best") %>!</div><br>
                       </div>
 
                       <div class="modal-footer">

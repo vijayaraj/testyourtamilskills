@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   serialize :choices
 
   def randomized_choices
-    choices = self.choices
+    choices = self.choices.reject(&:blank?)
     choices << self.answer
     choices.shuffle
   end

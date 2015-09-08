@@ -22,11 +22,11 @@
         <thead><tr></tr></thead>
         <tbody>
           <% @category.levels.each do |level| %>
-            <tr class="<%= 'muted' unless can_play?(level) %>">
+            <tr class="<%= can_play?(level) ? 'clickable-row' : 'muted' %> " data-href=<%= level_path(level.id) %> >
               <td><%= level.rank %></td>
               <td><%= level.name %></td>
               <td><%= score(@category, level) %> <%= t("score") %></td>
-              <td><%= can_play?(level) ? link_to(t("actions.view"), level_path(level.id)) : '<i class="fa fa-lock"></i>'.html_safe %></td>
+              <td><%= can_play?(level) ? '<i class="fa fa-unlock"></i>'.html_safe : '<i class="fa fa-lock"></i>'.html_safe %></td>
             </tr>
           <% end %>
         </tbody>
