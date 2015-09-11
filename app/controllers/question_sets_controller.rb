@@ -1,7 +1,7 @@
 class QuestionSetsController < ApplicationController
 
   before_filter :deny_access
-  before_filter :check_admin_or_superadmin_privileges, :only => [:new, :create, :index, :show]
+  # before_filter :check_admin_or_superadmin_privileges, :only => [:new, :create, :index, :show]
   before_filter :check_superadmin_privileges, :only => :approve
 
   def new

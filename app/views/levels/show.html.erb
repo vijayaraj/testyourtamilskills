@@ -44,23 +44,23 @@
                         <%= t("levels.start_quiz_text") %>
                         <div class="form-group">
                           <label class="col-sm-3" for="name"><%= t("question_sets.headers.name") %></label>
-                          <div class="col-sm-3"><%= question_set.name %></div>
+                          <div class="col-sm-8"><%= question_set.name %></div>
                         </div><br>
 
                         <div class="form-group">
                           <label class="col-sm-3" for="name"><%= t("category") %></label>
-                          <div class="col-sm-3"><%= @level.category.name %></div>
+                          <div class="col-sm-8"><%= @level.category.name %></div>
                         </div><br>
 
                         <div class="form-group">
                           <label class="col-sm-3" for="name"><%= t("level") %></label>
-                          <div class="col-sm-3"><%= @level.name %></div>
+                          <div class="col-sm-8"><%= @level.name %></div>
                         </div><br>
 
                         <% if question_set.owner %>
                           <div class="form-group">
                             <label class="col-sm-3" for="name"><%= t("question_sets.headers.owner") %></label>
-                            <div class="col-sm-3"><%= question_set.owner.name %></div>
+                            <div class="col-sm-8"><%= question_set.owner.name %></div>
                           </div><br>
                         <% end %>
 

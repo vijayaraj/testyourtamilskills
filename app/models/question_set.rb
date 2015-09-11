@@ -9,6 +9,8 @@ class QuestionSet < ActiveRecord::Base
   has_many :users, :through => "user_question_sets"
 
   scope :approved, -> { where("approved is true") }
+  scope :not_self, -> (user_id) { where("user_id <> #{user_id}") }
+  
   scope :filter_by_category, -> (category_id) { where("level_id = ?", category_id) }
   scope :filter_by_level, -> (level_id) { where("level_id = ?", level_id) }
   scope :filter_by_category_and_level, -> (category_id, level_id) do

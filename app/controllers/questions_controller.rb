@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   
   before_filter :deny_access
-  before_filter :admin_or_superadmin?, :set_question_set, :check_count, :except => :index
+  before_filter :set_question_set, :check_count, :except => :index
   before_filter :set_params, :time_started?, :only => :index
   before_filter :set_question_sets_tab, :except => :index
 
@@ -30,10 +30,10 @@ class QuestionsController < ApplicationController
 
     if @question.update_attributes(question_params)
       flash[:notice] = I18n.t("notifications.success")
-      redirect_to question_set_questions_path(@question_set.id)
+      redirect_to question_set_path(@question_set.id)
     else
       flash[:notice] = I18n.t("notifications.error")
-      redirect_to question_set_questions_path(@question_set.id)
+      redirect_to question_set_path(@question_set.id)
     end
   end
 

@@ -3,8 +3,8 @@ class LevelsController < ApplicationController
   before_filter :deny_access, :set_params, :only => [:show]
   
   def show
-    @question_sets = @level.question_sets.approved.filter_by_category(@category.id).
-      paginate(:page => params[:page],:per_page => 4)
+    @question_sets = @level.question_sets.approved.not_self(current_user.id).
+      filter_by_category(@category.id).paginate(:page => params[:page],:per_page => 4)
   end
 
   private
