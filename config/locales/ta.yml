@@ -43,6 +43,7 @@ ta:
     god: God
 
   actions:
+    login: கூகுல் புகுபதிகை
     view: காண்
     play: துவங்கு
     end: முடிவுறு
@@ -51,11 +52,13 @@ ta:
     create: இயற்று
     previous: முன்
     next: பின்
-    edit: திருத்து
+    edit: தொகு
 
   notifications:
     success: செய்தாயிற்று
-    error: பிசகு
+    error: பிழை
+    no_access: உங்களுக்கு இந்த பக்கத்தைக் காண அனுமதில்லை.
+    login_to_access: "இப்பக்கத்தைக் காண கூகுல் கணக்குடன் புகுபதிகை செய்யுங்கள்.  <a class='' href='/users/auth/google_oauth2'>புகுபதிகை</a>"
   
   categories: 
     your_level: உங்கள் நிலை
@@ -89,4 +92,5 @@ ta:
       name: பெயர்
       one_or_two_lines: ஓரிரு வரிகளில் 
       choice_text: ""
+    not_answered: பதிலளிக்கவில்லை
 

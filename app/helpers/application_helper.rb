@@ -6,7 +6,7 @@ module ApplicationHelper
     [
       [I18n.t("sidebar.vocabulary"), "vocabulary", "#", true],
       [I18n.t("sidebar.grammar"), "grammar", "#", true],
-      [I18n.t("question_sets.index.title"), "question_sets", question_sets_path, admin_or_superadmin?],
+      [I18n.t("question_sets.index.title"), "question_sets", question_sets_path, true],
     ]
   end
   

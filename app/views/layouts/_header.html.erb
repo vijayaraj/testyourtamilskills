@@ -7,7 +7,7 @@
       <i class=""> </i>
       <div class="_tooltip" data-placement="bottom" data-original-title="<%= t("home.google") %>"><%= current_user.name %></div>
     <% else %>
-      <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-power-off" %>
+      <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-sign-in _tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.login") %>
     <% end %>
   </div>
 </div>

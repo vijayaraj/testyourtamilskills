@@ -18,7 +18,7 @@ module LevelsHelper
       I18n.t("actions.play")
     when UserQuestionSet::STATUS.invert[:in_progress]
       I18n.t("actions.resume")
-    when UserQuestionSet::STATUS.invert[:success]
+    when UserQuestionSet::STATUS.invert[:completed]
       I18n.t("actions.view")
     else
       "Error"
@@ -28,7 +28,7 @@ module LevelsHelper
   def level_icons
     {
       :in_progress => "fa-hourglass-half",
-      :success => "fa-check",
+      :completed => "fa-check",
       :failure => "fa-close",
       :not_started => "fa-hourglass-1"
     }

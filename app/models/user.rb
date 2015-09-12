@@ -70,8 +70,9 @@ class User < ActiveRecord::Base
 
   def badge(category)
     BADGES.each_pair do |badge, score|
-      return badge if score.to_a.include?(points(category))
+      return badge if points(category) > 0 and score.to_a.include?(points(category))
     end
+    nil
   end
 
   def points(category)

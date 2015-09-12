@@ -1,6 +1,5 @@
 class UserQuestionSetsController < ApplicationController
 
-  before_filter :deny_access
   before_filter :set_params, :only => [:show]
   before_filter :check_status, :only => :update
 
@@ -27,7 +26,7 @@ class UserQuestionSetsController < ApplicationController
 
   def update
     @user_question_set.answers = params[:choices]
-    @user_question_set.status = UserQuestionSet::STATUS.invert[:success]
+    @user_question_set.status = UserQuestionSet::STATUS.invert[:completed]
     @user_question_set.end_time = Time.now
     @user_question_set.save
     
@@ -54,8 +53,8 @@ class UserQuestionSetsController < ApplicationController
     def check_status
       @user_question_set = scoper.find_by_id(params[:id])
       
-      if @user_question_set.status == UserQuestionSet::STATUS.invert[:success]
-        flash[:notice] = "Not allowed"
+      if @user_question_set.completed?
+        flash[:notice] = I18n.t("notifications.no_access")
         redirect_to question_set_path(@user_question_set.question_set_id)
       end 
     end

@@ -1,11 +1,9 @@
 class QuestionSetsController < ApplicationController
 
-  before_filter :deny_access
-  # before_filter :check_admin_or_superadmin_privileges, :only => [:new, :create, :index, :show]
   before_filter :check_superadmin_privileges, :only => :approve
 
   def new
-    @selected_tab = :new_question_set
+    @selected_tab = :question_sets
     @question_set = current_user.published_question_sets.new
   end
 
@@ -36,6 +34,7 @@ class QuestionSetsController < ApplicationController
   end
 
   def show
+    @selected_tab = :question_sets
     @question_set = QuestionSet.find_by_id(params[:id])
     @question_set || raise(ActiveRecord::RecordNotFound)
 

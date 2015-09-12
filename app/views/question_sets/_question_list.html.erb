@@ -4,48 +4,58 @@
   <div class="questions-section">
     <div class="panel-group" id="accordion">
       <% @questions.each_with_index do |question, index| %>
+        
+        <% if @user_question_set
+            user_answer = answer(@user_question_set.answers, index, params[:page])
+            end %>
+
         <div class="panel panel-default">
           <div class="panel-heading">
             <div data-toggle="collapse" data-parent="#accordion" href="<%= %(#collapse#{index}) %>">
               <h4 class="panel-title clickable">
-                <%= question.question %>
-                <% if @user_question_set %>
-                  <div class="pull-right col-lg-3">
-                    <%= t("question_sets.show.your_answer") %>:  <%= @user_question_set.answers[index.to_s] %>
-                  </div>
-                  <i class="pull-right col-lg-1 fa fa-check"></i>
+                <% if @user_question_set and @user_question_set.completed? %>
+                  <i class="<%= %(col-lg-1 fa fa-#{answer_icon(question, user_answer)}) %>"></i>
                 <% end %>
+                <%= question.question %>
               </h4>
             </div>
           </div>
           
           <div id="<%= %(collapse#{index}) %>" class="panel-collapse collapse <%= index.eql?(0) ? 'in' : '' %>">
             <div class="panel-body">
-              <% unless @user_question_set %> 
-                <%= link_to t('actions.edit'), edit_question_set_question_path(question.question_set.id, question.id), { :class => "pull-right" } %>
-              <% end %>
-              <div class="col-lg-4">
-                <%= radio_button_tag("choices#{index}[]", index, true, disabled: true) %> 
-                <span class="choice-div"><%= question.answer %></span>
+              <div class="pull-right">
+                <% if @user_question_set and @user_question_set.completed? %> 
+                  <%= t("question_sets.show.your_answer") %>:  <%= user_answer %>
+                <% end %>
+                <% unless @user_question_set %> 
+                  <%= link_to t('actions.edit'), edit_question_set_question_path(question.question_set.id, question.id) %>
+                <% end %>
               </div>
-              <div class="col-lg-4">
-                <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
-                <%= question.choices[0] %>
-              </div>
-              <div class="col-lg-4">
-                <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
-                <%= question.choices[1] %>
-              </div><br>
-              <div class="col-lg-4">
-                <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>  
-                <%= question.choices[2] %>
-              </div>
-              <% if question.choices[3].present? %>
+              
+              <div class="pull-left">
                 <div class="col-lg-4">
-                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>   
-                  <%= question.choices[3] %>
+                  <%= radio_button_tag("choices#{index}[]", index, true, disabled: true) %> 
+                  <span class="choice-div"><%= question.answer %></span>
                 </div>
-              <% end %>
+                <div class="col-lg-4">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
+                  <%= question.choices[0] %>
+                </div>
+                <div class="col-lg-4">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
+                  <%= question.choices[1] %>
+                </div>
+                <div class="col-lg-4">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>  
+                  <%= question.choices[2] %>
+                </div>
+                <% if question.choices[3].present? %>
+                  <div class="col-lg-4">
+                    <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>   
+                    <%= question.choices[3] %>
+                  </div>
+                <% end %>
+              </div>
               
             </div>
           </div>

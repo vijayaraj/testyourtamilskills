@@ -16,4 +16,16 @@ module QuestionSetsHelper
     %(#{question_set.questions.count} / 15)
   end
 
+  def answer_icon(question, answer)
+    (question.answer.eql?(answer)) ? "check" : "times"
+  end
+
+  def answer(answers, index, page, per_page = 5)
+    answers ||= {}
+    page ||= 1
+    key = ((page.to_i - 1) * per_page) + (index + 1)
+
+    answers[key.to_s] || I18n.t("questions.not_answered")
+  end
+
 end

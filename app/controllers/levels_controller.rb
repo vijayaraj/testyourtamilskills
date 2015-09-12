@@ -1,6 +1,6 @@
 class LevelsController < ApplicationController
 
-  before_filter :deny_access, :set_params, :only => [:show]
+  before_filter :set_params, :only => :show
   
   def show
     @question_sets = @level.question_sets.approved.not_self(current_user.id).

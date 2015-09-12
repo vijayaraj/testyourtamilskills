@@ -1,13 +1,12 @@
 <div class="title-section">
   <div class="breadcrumb">
-    <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
+    <%= link_to(t("question_sets.index.title"), question_sets_path) %> / <%= @question_set.name %>
   </div>
   
   <div>
     <div class="lead pull-left"><%= @question_set.name %></div>
     <% if @question_set.owner?(current_user) and !@question_set.approved? %>
       <%= link_to %( #{t("question")}), new_question_set_question_path(@question_set.id), :class => "fa fa-plus btn btn-primary pull-right" %>
-      <%= link_to %( #{t("actions.view")}), question_set_questions_path(@question_set.id), :class => "fa btn btn-primary pull-right" %>
     <% end %>
   </div>
 </div>

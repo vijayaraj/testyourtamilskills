@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :only => :show
+  skip_before_action :deny_access, :only => :home
   
   def show
   end

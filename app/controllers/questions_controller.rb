@@ -1,9 +1,7 @@
 class QuestionsController < ApplicationController
   
-  before_filter :deny_access
-  before_filter :set_question_set, :check_count, :except => :index
+  before_filter :set_question_set, :check_count, :set_question_sets_tab, :except => :index
   before_filter :set_params, :time_started?, :only => :index
-  before_filter :set_question_sets_tab, :except => :index
 
   def new
     @question = scoper.new
