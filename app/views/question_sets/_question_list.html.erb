@@ -5,9 +5,7 @@
     <div class="panel-group" id="accordion">
       <% @questions.each_with_index do |question, index| %>
         
-        <% if @user_question_set
-            user_answer = answer(@user_question_set.answers, index, params[:page])
-            end %>
+        <% user_answer = @user_question_set.answer(question) if @user_question_set %>
 
         <div class="panel panel-default">
           <div class="panel-heading">

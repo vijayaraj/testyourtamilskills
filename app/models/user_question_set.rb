@@ -32,6 +32,10 @@ class UserQuestionSet < ActiveRecord::Base
     end
   end
 
+  def answer(question)
+    answers[question.id.to_s] || I18n.t("questions.not_answered")
+  end
+
   private
     def calculate_score
       score = 0
