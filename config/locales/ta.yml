@@ -15,7 +15,7 @@ ta:
     god: நிபுணன்
 
   sidebar:
-    rules: விதிமுறைகள்
+    rules: முகப்பு
     vocabulary: சொல் வளம் (விரைவில்)
     grammar: இலக்கணம் (விரைவில்)
 
@@ -41,6 +41,11 @@ ta:
     scholar: Scholar 
     master: Master
     god: God
+    
+  devise:
+    omniauth_callbacks:
+      user:
+        success: கூகுலுடன் புகுபதிகை செய்துள்ளீர்கள்.
 
   actions:
     login: கூகுல் புகுபதிகை
