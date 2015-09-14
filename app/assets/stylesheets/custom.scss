@@ -100,11 +100,11 @@ tr.clickable-row, .clickable { cursor: pointer; }
   min-height: 70px;
   background-color: #F0F0F0;
   @media only screen and (min-width: 768px) {
-    padding: 15px 70px;
+    padding: 15px 0px;
   }
   @media only screen and (max-width: 768px) {
     padding: 15px;
-    .login-section { margin-top: -35px }
+    .login-section { margin-top: -35px; }
   }
   h2 { margin-top: 0px; }
 }

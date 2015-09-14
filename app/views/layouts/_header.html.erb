@@ -1,13 +1,15 @@
 <div class="header">
-  <div class="hide-in-mobile pull-left"><h2>தமிழ்</h2></div>
-  <div class="show-in-mobile text-center"><h2>தமிழ்</h2></div>
-  
-  <div class="pull-right login-section">
-    <% if current_user %>
-      <i class=""> </i>
-      <div class="_tooltip" data-placement="bottom" data-original-title="<%= t("home.google") %>"><%= current_user.name %></div>
-    <% else %>
-      <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-sign-in _tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.login") %>
-    <% end %>
+  <div class="container">
+    <div class="hide-in-mobile pull-left"><h2>தமிழ்</h2></div>
+    <div class="show-in-mobile text-center"><h2>தமிழ்</h2></div>
+    
+    <div class="pull-right login-section">
+      <% if current_user %>
+        <i class=""> </i>
+        <div class="_tooltip" data-placement="bottom" data-original-title="<%= t("home.google") %>"><%= current_user.name %></div>
+      <% else %>
+        <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-sign-in _tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.login") %>
+      <% end %>
+    </div>
   </div>
 </div>
