@@ -20,7 +20,7 @@ ta:
     grammar: இலக்கணம் (விரைவில்)
 
   home:
-    hello: வணக்கம். 
+    hello: வணக்கம். :)
     mission: இது நம் தமிழ் சொல் வளத்திற்கு ஒரு தேர்வு. சில தமிழ் சொற்களை மறக்காமலிருப்பதற்கும் நினைவுப் படுத்துவதற்காகவும் ஒரு சிறு முயற்சி.
     rule_text: மொழிபெயர்ப்பு, சொல் வளம், இலக்கணம் என மூன்று பிரிவுகள். ஒவ்வொரு பிரிவிலும் ஐந்து நிலைகள் - முதல் நிலை எளிதாகவும், ஐந்தாவது கடினமாகவுமிருக்கும். ஒவ்வொரு நிலையிலும் கேள்வித் தொகுப்புகள் பட்டியலிடப்பட்டிருக்கும். ஒரு நிலையிலிருந்து அடுத்த நிலைக்குச் செல்ல அந்நிலையிலுள்ள ஒரு கேள்வித் தொகுப்பையாவது முடித்திருக்க வேண்டும். அவ்வளவே.
     scoring: ஒவ்வொரு கேள்வித் தொகுப்பிலும் 15 கேள்விகள். ஒரு சரியான பதில் = 1 புள்ளி. மொத்தம் 15 * 5 நிலைகள் = 75 புள்ளிகள். இதை வைத்து ஒரு தரவரிசைப் பட்டியல் இங்கே
@@ -29,10 +29,10 @@ ta:
 
   en-home:
     hello: Hi there,
-    mission: This is a small effort to test our skills in Tamil. We have questions listed down in a quiz format.
-    rule_text: There are three sections - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard. Question sets are listed in each level. You will have to complete atleast one question set to move up a level. 
+    mission: This is a small effort to test your skills in Tamil. Also reminds you, the forgotten and less used words in the language. 
+    rule_text: Three sections in the list - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard. Question sets are listed in each level. You will have to complete atleast one question set to move up a level. 
     scoring: There are 15 questions in each set. 1 right answer = 1 point. Totally, 15 * 5 = 75 points. We have a ranking table based on this scoring.
-    contribution: Also, you can add your questions in this site. They will be available for other users to answer, if approved. Good luck!
+    contribution: Also, you can add your questions in the site. They will be available for other users to answer, if approved. Good luck!
     points: points
     
   en-badges:
@@ -45,7 +45,7 @@ ta:
   devise:
     omniauth_callbacks:
       user:
-        success: கூகுலுடன் புகுபதிகை செய்துள்ளீர்கள்.
+        success: கூகுலுடன் புகுபதிகை செய்துள்ளீர்கள். :)
 
   actions:
     login: கூகுல் புகுபதிகை
@@ -76,10 +76,11 @@ ta:
       failure: பிசகு
       not_started: ""
     start_quiz_text: ""
+    no_question_set_text: "இந்நிலைக்கு கேள்விகள் இன்னும் சேர்க்கப்படவில்லை. முயற்சி செய்துக் கொண்டே இருங்கள். மேலும் நீங்கள் <a விhref='/question-sets'>இப்பக்கத்தில்</a> உங்கள் கேள்விகளைப் பதியலாம். :)" 
 
   question_sets:
     index:
-      title: என் கேள்வி தொகுப்புகள்
+      title: என் கேள்வித் தொகுப்புகள்
       question: வினா
     headers:
       name: பெயர்
@@ -89,6 +90,7 @@ ta:
       one_or_two_words: ஓரிரண்டு வார்த்தைகளில் 
     show:
       your_answer: உங்கள் பதில்
+    no_question_sets: இப்பகுதியில் நீங்கள் உங்கள் கேள்விகளைப் பதியலாம். ஒரு தொகுப்பில் 15 கேள்விகள் என, ஏதெனும் ஒரு பிரிவில் ஒரு நிலையைத் தேர்ந்தெடுத்து சேர்த்து விடுங்கள். அவற்றிற்கு விரைவில் மற்ற பயனர்கள் பதிலளிக்களாம். :)                                      
   questions:
     title: கேள்விகள்
     new:

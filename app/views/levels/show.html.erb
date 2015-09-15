@@ -15,72 +15,76 @@
       <table class="table table-responsive table-hover">
         
         <tbody>
-          <% @question_sets.each do |question_set| %>
-            <% status = current_user.question_set_status(question_set) %>
-            <tr>
-              <td><%= question_set.name %></td>
-              <td><i class="fa <%= play_status_icon(status) %> _tooltip" data-placement="top" data-original-title='<%= t("levels.progress.#{play_status(status)}") %>'></i></td>
-              <td><%= current_user.question_set_score(question_set) %> <%= t("score") %></td>
-              
-              <% unless status %>
-                <td><a href="#" data-toggle="modal" data-target="#quiz-start-modal-<%= question_set.id %>"><%= fetch_action(status) %></a></td>
-              <% else %>
-                <% if status.to_i.eql?(UserQuestionSet::STATUS.invert[:completed]) %>
-                  <td><a href="<%= question_set_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
+          <% unless @question_sets.present? %>
+            <p><%= t("levels.no_question_set_text").html_safe %></p>
+          <% else %>
+            <% @question_sets.each do |question_set| %>
+              <% status = current_user.question_set_status(question_set) %>
+              <tr>
+                <td><%= question_set.name %></td>
+                <td><i class="fa <%= play_status_icon(status) %> _tooltip" data-placement="top" data-original-title='<%= t("levels.progress.#{play_status(status)}") %>'></i></td>
+                <td><%= current_user.question_set_score(question_set) %> <%= t("score") %></td>
+                
+                <% unless status %>
+                  <td><a href="#" data-toggle="modal" data-target="#quiz-start-modal-<%= question_set.id %>"><%= fetch_action(status) %></a></td>
                 <% else %>
-                  <td><a href="<%= question_set_questions_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
-                <% end %>
-              <% end %>
-          
-              <!-- Modal -->
-              <div id="quiz-start-modal-<%= question_set.id %>" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                  <!-- Modal content-->
-                  <%= form_tag user_question_sets_path do %>
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><%= %(#{question_set.name}) %></h4>
-                      </div>
-
-                      <div class="modal-body">
-                        <%= t("levels.start_quiz_text") %>
-                        <div class="form-group">
-                          <label class="col-sm-3" for="name"><%= t("question_sets.headers.name") %></label>
-                          <div class="col-sm-8"><%= question_set.name %></div>
-                        </div><br>
-
-                        <div class="form-group">
-                          <label class="col-sm-3" for="name"><%= t("category") %></label>
-                          <div class="col-sm-8"><%= @level.category.name %></div>
-                        </div><br>
-
-                        <div class="form-group">
-                          <label class="col-sm-3" for="name"><%= t("level") %></label>
-                          <div class="col-sm-8"><%= @level.name %></div>
-                        </div><br>
-
-                        <% if question_set.owner %>
-                          <div class="form-group">
-                            <label class="col-sm-3" for="name"><%= t("question_sets.headers.owner") %></label>
-                            <div class="col-sm-8"><%= question_set.owner.name %></div>
-                          </div><br>
-                        <% end %>
-
-                        <%= hidden_field_tag :question_set_id, question_set.id %>
-                        <div class="form-group col-sm-3"><%= t("all_the_best") %>!</div><br>
-                      </div>
-
-                      <div class="modal-footer">
-                        <%= submit_tag t("actions.play"), :class => "btn btn-primary" %>
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><%= t("actions.close") %></button>
-                      </div>
-                    </div>
+                  <% if status.to_i.eql?(UserQuestionSet::STATUS.invert[:completed]) %>
+                    <td><a href="<%= question_set_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
+                  <% else %>
+                    <td><a href="<%= question_set_questions_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
                   <% end %>
+                <% end %>
+            
+                <!-- Modal -->
+                <div id="quiz-start-modal-<%= question_set.id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <%= form_tag user_question_sets_path do %>
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title"><%= %(#{question_set.name}) %></h4>
+                        </div>
+
+                        <div class="modal-body">
+                          <%= t("levels.start_quiz_text") %>
+                          <div class="form-group">
+                            <label class="col-sm-3" for="name"><%= t("question_sets.headers.name") %></label>
+                            <div class="col-sm-8"><%= question_set.name %></div>
+                          </div><br>
+
+                          <div class="form-group">
+                            <label class="col-sm-3" for="name"><%= t("category") %></label>
+                            <div class="col-sm-8"><%= @level.category.name %></div>
+                          </div><br>
+
+                          <div class="form-group">
+                            <label class="col-sm-3" for="name"><%= t("level") %></label>
+                            <div class="col-sm-8"><%= @level.name %></div>
+                          </div><br>
+
+                          <% if question_set.owner %>
+                            <div class="form-group">
+                              <label class="col-sm-3" for="name"><%= t("question_sets.headers.owner") %></label>
+                              <div class="col-sm-8"><%= question_set.owner.name %></div>
+                            </div><br>
+                          <% end %>
+
+                          <%= hidden_field_tag :question_set_id, question_set.id %>
+                          <div class="form-group col-sm-3"><%= t("all_the_best") %>!</div><br>
+                        </div>
+
+                        <div class="modal-footer">
+                          <%= submit_tag t("actions.play"), :class => "btn btn-primary" %>
+                          <button type="button" class="btn btn-default" data-dismiss="modal"><%= t("actions.close") %></button>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-            </tr>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

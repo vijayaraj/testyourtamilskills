@@ -137,6 +137,12 @@ tr.clickable-row, .clickable { cursor: pointer; }
         min-height: 490px;
       }
     }
+    /* Temporary hack for min-height problem in bigger screens. ToDo: Sticky footer */
+    @media only screen and (min-height: 768px) {
+      .right-content{
+        min-height: 700px;
+      }
+    }
   }
 }
 
