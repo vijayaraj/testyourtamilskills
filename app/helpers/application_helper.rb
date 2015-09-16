@@ -4,15 +4,14 @@ module ApplicationHelper
   
   def option_values
     [
-      [I18n.t("sidebar.vocabulary"), "vocabulary", "#", true],
-      [I18n.t("sidebar.grammar"), "grammar", "#", true],
+      
       [I18n.t("question_sets.index.title"), "question_sets", question_sets_path, true],
     ]
   end
   
   def sidebar_options
     options = [[I18n.t("sidebar.rules"), "rules", root_path, true]]
-    Category.all.map { |c| options << [c.name, "category_#{c.id}", category_path(c.id), true] }
+    Category.all.order(:created_at).map { |c| options << [c.name, "category_#{c.id}", category_path(c.id), true] }
     option_values.each do |o|
       options << o
     end

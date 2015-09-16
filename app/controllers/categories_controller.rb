@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   def show
     @category = scope.find_by_id(params[:id])
     @category || raise(ActiveRecord::RecordNotFound)
+    @levels = @category.levels.all.order(:created_at) 
   end
 
   private

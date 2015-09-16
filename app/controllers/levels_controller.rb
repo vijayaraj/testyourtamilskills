@@ -3,8 +3,8 @@ class LevelsController < ApplicationController
   before_filter :set_params, :only => :show
   
   def show
-    @question_sets = @level.question_sets.approved.not_self(current_user.id).
-      filter_by_category(@category.id).paginate(:page => params[:page],:per_page => 4)
+    @question_sets = question_sets_scoper.order(:created_at).
+        paginate(:page => params[:page],:per_page => 4)
   end
 
   private
@@ -12,6 +12,10 @@ class LevelsController < ApplicationController
       @level = Level.find_by_id(params[:id])
       @category = @level.category
       @selected_tab = %(category_#{@category.id})
+    end
+
+    def question_sets_scoper
+      @level.question_sets.approved.not_self(current_user.id).filter_by_category(@category.id)
     end
 
 end
