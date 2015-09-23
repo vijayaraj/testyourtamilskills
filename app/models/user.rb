@@ -33,10 +33,6 @@ class User < ActiveRecord::Base
     Thread.current[:user]
   end
 
-  def self.reset_current_account
-    Thread.current[:user] = nil
-  end
-
   def set_current
     Thread.current[:user] = self
   end

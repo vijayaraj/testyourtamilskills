@@ -11,7 +11,7 @@ module ApplicationHelper
   
   def sidebar_options
     options = [[I18n.t("sidebar.rules"), "rules", root_path, true]]
-    Category.all.order(:created_at).map { |c| options << [c.name, "category_#{c.id}", category_path(c.id), true] }
+    Category.all.order(:id).map { |c| options << [c.name, "category_#{c.id}", category_path(c.id), true] }
     option_values.each do |o|
       options << o
     end
