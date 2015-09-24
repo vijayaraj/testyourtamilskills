@@ -4,11 +4,11 @@ class QuestionSetsController < ApplicationController
 
   def new
     @selected_tab = :question_sets
-    @question_set = current_user.published_question_sets.new
+    @question_set = scoper.new
   end
 
   def create
-    @question_set = current_user.published_question_sets.new(question_set_params)
+    @question_set = scoper.new(question_set_params)
     @question_set.approved = false
 
     if @question_set.save
@@ -46,10 +46,14 @@ class QuestionSetsController < ApplicationController
 
   def index
     @selected_tab = :question_sets
-    @question_sets = current_user.published_question_sets.paginate(:page => params[:page],:per_page => 7)
+    @question_sets = scoper.newest.paginate(:page => params[:page],:per_page => 10)
   end
 
   private
+    def scoper
+      current_user.published_question_sets
+    end
+
     def question_set_params
       params.require(:question_set).permit(:name, :category_id, :level_id, :published)
     end
