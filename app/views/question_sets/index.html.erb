@@ -20,7 +20,7 @@
                 <td><%= question_set.category.name %></td>
                 <td><%= question_set.level.name %></td>
                 <td>
-                <% unless question_set.questions.count > 15 %>
+                <% if question_set.questions.count < 15 %>
                   <%= link_to %(), new_question_set_question_path(question_set.id), :class => "fa fa-plus _tooltip", "data-original-title" => t("question") %> </td>
                 <% else %>
                   <div class="muted fa fa-plus _tooltip" "data-original-title"='<%= t("question") %>'></div>

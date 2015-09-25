@@ -31,7 +31,7 @@ ta:
   en-home:
     hello: Hi there,
     mission: This is a small effort to test your skills in Tamil. Also to remind you, the forgotten and the less used words in the language. 
-    rule_text: Three sections in the list - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard (I call it "level Rajnikanth" :D ). Question sets are listed in each level. You will have to complete atleast one question set to move up a level. 
+    rule_text: Three sections in the list - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard. Question sets are listed in each level. You will have to complete atleast one question set to move up a level. 
     scoring: There are 15 questions in each set. 1 right answer = 1 point. Totally, 15 * 5 = 75 points. And, a ranking table based on the score.
     contribution: Also, you can add your questions in the site. They will be available for other users to answer. Good luck!
     points: points
