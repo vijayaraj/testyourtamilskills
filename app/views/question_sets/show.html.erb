@@ -1,6 +1,10 @@
 <div class="title-section">
   <div class="breadcrumb">
-    <%= link_to(t("question_sets.index.title"), question_sets_path) %> / <%= @question_set.name %>
+    <% if @question_set.owner?(current_user) %>
+      <%= link_to(t("question_sets.index.title"), question_sets_path) %> / <%= @question_set.name %>
+    <% else %>
+      <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
+    <% end %>
   </div>
   
   <div>
@@ -15,7 +19,7 @@
   <br><br>
   <div class="form-group">
     <label class="col-sm-4" for="name"><%= t("question_sets.headers.name") %></label>
-    <div class="col-sm-4"><%= @question_set.name %></div>
+    <div class="col-sm-8"><%= @question_set.name %></div>
   </div><br>
 
   <div class="form-group">

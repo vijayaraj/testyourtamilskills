@@ -26,7 +26,7 @@
                 <td><%= current_user.question_set_score(question_set) %> <%= t("score") %></td>
                 
                 <% unless status %>
-                  <td><a href="#" data-toggle="modal" data-target="#quiz-start-modal-<%= question_set.id %>"><%= fetch_action(status) %></a></td>
+                  <td><a href="#" data-toggle="modal" data-target="#quiz-start-modal-<%= question_set.id %>" class="_tooltip" id="getin-tooltip" data-placement="right" data-original-title="<%= t("actions.question_set_getin") %>"><%= fetch_action(status) %></a></td>
                 <% else %>
                   <% if status.to_i.eql?(UserQuestionSet::STATUS.invert[:completed]) %>
                     <td><a href="<%= question_set_path(question_set.id) %>" class=""><%= fetch_action(status) %></a></td>
@@ -99,3 +99,8 @@
   <% end %>
 
 </div>
+
+<script type="text/javascript">
+  $('#getin-tooltip').tooltip({trigger: 'manual'}).tooltip('show');
+</script>
+

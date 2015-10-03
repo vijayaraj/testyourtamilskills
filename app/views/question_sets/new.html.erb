@@ -9,24 +9,28 @@
   
   <%= form_for(@question_set , :html => { :class => "form-horizontal", "role" => "form" }) do |form| %>
     <div class="form-group">
-      <label class="col-sm-2" for="name"><%= t("question_sets.headers.name") %></label>
+      <label class="col-sm-3" for="name"><%= t("question_sets.headers.name") %></label>
       <div class="col-sm-4">
         <%= form.text_field :name, :placeholder => t("question_sets.headers.one_or_two_words"), :required => true, :class => "form-control", :size => "25" %>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2" for="category_id"><%= t("category") %></label>
-      <div class="col-sm-4">
-        <%= form.select :category_id, options_for_select(category_list), :required => true, :class => "form-control" %>
+      <label class="col-sm-3" for="category_id"><%= t("category") %></label>
+      <div class="col-sm-4" >
+        <%= form.select :category_id, options_for_select(category_list, 1), { include_blank: false }, { :required => true, :class => "form-control category-select", :id => "category-select" }  %>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2" for="level_id"><%= t("level") %></label>
-      <div class="col-sm-4">
-        <%= form.select :level_id, options_for_select(level_list), :required => true, :class => "form-control" %>
-      </div>
+      <label class="col-sm-3" for="level_id"><%= t("level") %></label>
+      
+      <% Category.all.each do |category| %>
+        <div class="col-sm-4 level-select <%= category.id.eql?(1) ? 'show' : 'hide' %>" id="<%= %(level-select-#{category.id}) %>">
+          <%= form.select :level_id, options_for_select(level_list(category)), { include_blank: false }, { :required => true, :class => "form-control" } %>
+        </div>
+      <% end %>
+      
     </div><br>
 
     <div class="form-group">
@@ -38,3 +42,15 @@
   <% end %>
   
 </div>
+
+<script>
+  jQuery(document).ready(function($) {
+    $("#category-select").change(function() {
+      var categoryId = $(this).val()
+      var levelDomId = "#level-select-" + categoryId
+      $(".level-select").removeClass("show")
+      $(".level-select").addClass("hide")
+      $(levelDomId).addClass("show")
+    });
+  });
+</script>

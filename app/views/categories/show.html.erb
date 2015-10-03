@@ -22,7 +22,7 @@
         <thead><tr></tr></thead>
         <tbody>
           <% @levels.each do |level| %>
-            <tr class="<%= can_play?(level) ? 'clickable-row' : 'muted' %> " data-href=<%= level_path(level.id) %> >
+            <tr class="<%= can_play?(level) ? 'clickable-row _tooltip' : 'muted' %>" data-placement="top" data-original-title="<%= t("actions.level_getin") %>" data-href=<%= level_path(level.id) %> >
               <td><%= level.rank %></td>
               <td><%= level.name %></td>
               <td><%= score(@category, level) %> <%= t("score") %></td>
@@ -35,5 +35,4 @@
   <% else %>
     log in
   <% end %>
-
 </div>

@@ -4,8 +4,8 @@ module QuestionSetsHelper
     Category.all.collect{ |category| [category.name, category.id] }  
   end
 
-  def level_list
-    Level.all.collect{ |level| [level.name, level.id] }  
+  def level_list(category)
+    category.levels.all.collect{ |level| [level.name, level.id] }  
   end
 
   def user_answer(user_question_set, question)
