@@ -25,11 +25,13 @@
     <div class="form-group">
       <label class="col-sm-3" for="level_id"><%= t("level") %></label>
       
-      <% Category.all.each do |category| %>
+      <% # To be ajaxified 
+        category = Category.first %>
+
         <div class="col-sm-4 level-select <%= category.id.eql?(1) ? 'show' : 'hide' %>" id="<%= %(level-select-#{category.id}) %>">
           <%= form.select :level_id, options_for_select(level_list(category)), { include_blank: false }, { :class => "form-control" } %>
         </div>
-      <% end %>
+      
       
     </div><br>
 
@@ -42,16 +44,3 @@
   <% end %>
   
 </div>
-
-<script>
-  jQuery(document).ready(function($) {
-    $("#category-select").change(function() {
-      var categoryId = $(this).val()
-      var levelDomId = "#level-select-" + categoryId
-      $(".level-select").removeClass("show")
-      $(".level-select").addClass("hide")
-      $(levelDomId).addClass("show")
-      $(levelDomId).prop('required', true);
-    });
-  });
-</script>
