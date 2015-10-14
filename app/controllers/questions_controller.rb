@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   
-  before_filter :set_question_set, :check_count, :set_question_sets_tab, :except => :index
+  before_filter :set_question_set, :set_question_sets_tab, :except => :index
+  before_filter :can_add?, only: [:new, :create, :show]
+  before_filter :can_edit?, only: [:edit, :update]
   before_filter :set_params, :time_started?, :only => :index
 
   def new
@@ -79,8 +81,18 @@ class QuestionsController < ApplicationController
       end
     end
 
-    def check_count
-      redirect_to question_set_path(@question_set.id) if @question_set.questions.count >= 15
+    def can_add?
+      if @question_set.questions.count >= 2
+        flash[:notice] = I18n.t("notifications.question_limit_reached")
+        redirect_to question_set_path(@question_set.id)
+      end
+    end
+
+    def can_edit?
+      if @question_set.approved
+        flash[:notice] = I18n.t("notifications.question_set_published")
+        redirect_to question_set_path(@question_set.id)
+      end
     end
 
     def question_params

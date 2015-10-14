@@ -67,7 +67,9 @@ ta:
     error: பிழை
     no_access: உங்களுக்கு இந்த பக்கத்தைக் காண அனுமதில்லை.
     login_to_access: "இப்பக்கத்தைக் காண கூகுல் கணக்குடன் புகுபதிகை செய்யுங்கள்.  <a class='' href='/users/auth/google_oauth2'>புகுபதிகை</a>"
-  
+    question_limit_reached: 15 கேள்விகள் சேர்த்துவிட்டீர்கள்! :)
+    question_set_published: தொகுப்பு வெளியிடப்பட்டுவிட்டது. இனி திருத்த இயலாது.
+
   categories: 
     your_level: உங்கள் நிலை
   
