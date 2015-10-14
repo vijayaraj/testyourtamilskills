@@ -82,7 +82,7 @@ class QuestionsController < ApplicationController
     end
 
     def can_add?
-      if @question_set.questions.count >= 2
+      if @question_set.questions.count >= 15
         flash[:notice] = I18n.t("notifications.question_limit_reached")
         redirect_to question_set_path(@question_set.id)
       end
