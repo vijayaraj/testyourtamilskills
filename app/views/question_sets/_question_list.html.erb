@@ -25,7 +25,7 @@
                 <% if @user_question_set and @user_question_set.completed? %> 
                   <%= t("question_sets.show.your_answer") %>:  <%= user_answer %>
                 <% end %>
-                <% unless @user_question_set %> 
+                <% if !@user_question_set and !question.question_set.approved %> 
                   <%= link_to t('actions.edit'), edit_question_set_question_path(question.question_set.id, question.id) %>
                 <% end %>
               </div>

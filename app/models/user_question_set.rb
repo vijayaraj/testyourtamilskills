@@ -1,11 +1,11 @@
 class UserQuestionSet < ActiveRecord::Base
-
   belongs_to :user
   belongs_to :question_set
 
   serialize :answers
 
-  after_update :calculate_score
+  before_create :set_default_params
+  before_save :calculate_score
 
   STATUS = {
     1 => :in_progress,
@@ -13,18 +13,18 @@ class UserQuestionSet < ActiveRecord::Base
     3 => :failure
   }
 
-  scope :filter_by_category, -> (category_id) do
-    joins(:question_set).where("question_sets.category_id = #{category_id}")
-  end
+  scope :filter_by_category, lambda { |category_id|
+    joins(:question_set).where('question_sets.category_id = ?', category_id)
+  }
 
-  scope :filter_by_level, -> (level_id) do
-    joins(:question_set).where("question_sets.level_id = #{level_id}")
-  end
+  scope :filter_by_level, lambda { |level_id|
+    joins(:question_set).where('question_sets.level_id = ?', level_id)
+  }
 
-  scope :filter_by_category_and_level, -> (category_id, level_id) do
-    joins(:question_set).where(
-      "question_sets.category_id = #{category_id} and question_sets.level_id = #{level_id}")
-  end
+  scope :filter_by_category_and_level, lambda { |category_id, level_id|
+    joins(:question_set).where('question_sets.category_id = ? &&
+      question_sets.level_id = ?', category_id, level_id)
+  }
 
   STATUS.values.each do |status_name|
     define_method %(#{status_name}?) do
@@ -33,17 +33,24 @@ class UserQuestionSet < ActiveRecord::Base
   end
 
   def answer(question)
-    answers[question.id.to_s] || I18n.t("questions.not_answered")
+    answers[question.id.to_s] || I18n.t('questions.not_answered')
   end
 
   private
-    def calculate_score
-      score = 0
-      (answers || {}).each do |question_id, answer|
-        question = question_set.questions.find_by_id(question_id.to_i)
-        score = question.answer.eql?(answer) ? score + 1 : score
-      end    
-      self.update_column(:score, score)
-    end
 
+  def set_default_params
+    self.status = UserQuestionSet::STATUS.invert[:in_progress]
+    self.start_time = Time.now
+    self.score = 0
+  end
+
+  def calculate_score
+    self.status = UserQuestionSet::STATUS.invert[:completed]
+    self.end_time = Time.now
+    self.score = 0
+    (answers || {}).each do |question_id, answer|
+      question = question_set.questions.find_by_id(question_id.to_i)
+      self.score = question.answer.eql?(answer) ? self.score + 1 : self.score
+    end
+  end
 end

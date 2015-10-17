@@ -3,7 +3,7 @@
     <% if @question_set.owner?(current_user) %>
       <%= link_to(t("question_sets.index.title"), question_sets_path) %> / <%= @question_set.name %>
     <% else %>
-      <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
+      <%= category_link %> / <%= level_link %> / <%= @question_set.name %>
     <% end %>
   </div>
   

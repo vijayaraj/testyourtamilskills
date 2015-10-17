@@ -1,11 +1,20 @@
 module QuestionSetsHelper
-  
   def category_list
-    Category.all.collect{ |category| [category.name, category.id] }  
+    Category.all.collect { |category| [category.name, category.id] }
+  end
+
+  def category_link
+    category = @question_set.category
+    link_to(category.name, category_path(category.id))
   end
 
   def level_list(category)
-    category.levels.all.collect{ |level| [level.name, level.id] }  
+    category.levels.all.collect { |level| [level.name, level.id] }
+  end
+
+  def level_link
+    level = @question_set.level
+    link_to(level.name, level_path(level.id))
   end
 
   def user_answer(user_question_set, question)
@@ -17,7 +26,6 @@ module QuestionSetsHelper
   end
 
   def answer_icon(question, answer)
-    (question.answer.eql?(answer)) ? "check" : "times"
+    (question.answer.eql?(answer)) ? 'check' : 'times'
   end
-
 end

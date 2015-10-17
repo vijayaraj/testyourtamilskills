@@ -1,7 +1,7 @@
 class Identity < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :uid, :provider
-  validates_uniqueness_of :uid, :scope => :provider
+  validates_uniqueness_of :uid, scope: :provider
 
   serialize :auth_data, JSON
 
@@ -11,7 +11,7 @@ class Identity < ActiveRecord::Base
 
   %w(name email image).each do |attr|
     define_method attr do
-      auth.info.send(attr) || raise("Could not find #{attr} in #{auth}")
+      auth.info.send(attr) || fail('Could not find #{attr} in #{auth}')
     end
   end
 end

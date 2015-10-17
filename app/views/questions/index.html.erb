@@ -1,6 +1,6 @@
 <div class="title-section">
   <div class="breadcrumb">
-    <%= link_to(@category.name, category_path(@category.id)) %> / <%= link_to(@level.name, level_path(@level.id)) %> / <%= @question_set.name %>
+    <%= category_link %> / <%= level_link %> / <%= @question_set.name %>
   </div>
   <div class="lead text-center" id="question-no"><span class="highlighted"><%= t("question") %> 1</span></div>
 </div>

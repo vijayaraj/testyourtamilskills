@@ -1,5 +1,4 @@
 class Question < ActiveRecord::Base
-
   belongs_to :question_set
   belongs_to :user
 
@@ -7,8 +6,7 @@ class Question < ActiveRecord::Base
 
   def randomized_choices
     choices = self.choices.reject(&:blank?)
-    choices << self.answer
+    choices << answer
     choices.shuffle
   end
-    
 end

@@ -13,5 +13,4 @@ module CategoriesHelper
   def can_play?(level)
     level.previous_level_completed?
   end
-
 end

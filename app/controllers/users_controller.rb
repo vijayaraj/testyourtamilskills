@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :deny_access, :only => :home
-  
+  skip_before_action :deny_access, only: :home
+
   def show
   end
 
@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   end
 
   private
-    def scoper
-      @user = User.find(params[:id])
-    end
+
+  def scoper
+    @user = User.find(params[:id])
+  end
 end
