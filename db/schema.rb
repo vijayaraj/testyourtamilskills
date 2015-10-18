@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150725181508) do
+ActiveRecord::Schema.define(version: 20151018113717) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 20150725181508) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_scores", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "total_score"
+    t.integer  "question_sets_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category_score"
+  end
+
+  add_index "user_scores", ["user_id", "category_id"], name: "index_user_scores_on_user_and_categories", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

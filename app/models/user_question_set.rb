@@ -6,6 +6,7 @@ class UserQuestionSet < ActiveRecord::Base
 
   before_create :set_default_params
   before_save :calculate_score
+  after_commit :update_user_scores, on: :update
 
   STATUS = {
     1 => :in_progress,
@@ -52,5 +53,9 @@ class UserQuestionSet < ActiveRecord::Base
       question = question_set.questions.find_by_id(question_id.to_i)
       self.score = question.answer.eql?(answer) ? self.score + 1 : self.score
     end
+  end
+
+  def update_user_scores
+    user.update_user_scores(question_set.category)
   end
 end

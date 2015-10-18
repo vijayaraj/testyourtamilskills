@@ -2,7 +2,8 @@ module ApplicationHelper
   def option_values
     [
       [I18n.t('question_sets.index.title'), 'question_sets',
-       question_sets_path, true]
+       question_sets_path, true],
+      [I18n.t('user_scores.title'), 'user_scores', user_scores_path, true]
     ]
   end
 

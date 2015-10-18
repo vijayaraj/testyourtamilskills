@@ -17,8 +17,6 @@ ta:
 
   sidebar:
     rules: முகப்பு
-    vocabulary: சொல்வளம் (விரைவில்)
-    grammar: இலக்கணம் (விரைவில்)
 
   home:
     hello: வணக்கம்
@@ -110,3 +108,13 @@ ta:
       choice_text: தெரிவுகள், வரிசை மாற்றிக் காட்டப்படும்.
     not_answered: பதிலளிக்கவில்லை
 
+  user_scores:
+    title: தரவரிசைப்பட்டியல்
+    headers:
+      rank: வரிசை	
+      name: பெயர்
+      total_score: புள்ளிகள்
+      total_score_followup: விடையளித்தத் தொகுப்புகளின் மொத்தப் புள்ளிகள்
+      question_sets: தொகுப்புகள்
+      question_sets_followup: விடையளித்தத் தொகுப்புகளின் எண்ணிக்கை
+      badge: நிலை

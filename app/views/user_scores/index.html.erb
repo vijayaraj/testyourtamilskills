@@ -1,0 +1,49 @@
+<div class="details">
+  <div class="title-section">
+    <div class="lead"><%= t('user_scores.title') %></div>
+  </div>
+
+  <ul class="nav nav-tabs">
+    <% Category.all.each do |category| %>
+      <li class="<%= category.id.eql?(1) ? 'active' : '' %>">
+        <a data-toggle="tab" href="<%= %(#section#{category.id}) %>">
+          <%= category.name %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="content-section tab-content col-centered">
+    <% Category.all.each do |category| %>
+      <div id="<%= %(section#{category.id}) %>" class="tab-pane fade in <%= category.id.eql?(1) ? 'active' : '' %>">
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr class="text-center">
+              <td><%= t('user_scores.headers.rank') %></td>
+              <td><%= t('user_scores.headers.name') %></td>
+              <td><div class="_tooltip" data-placement="top" data-original-title="<%= t('user_scores.headers.total_score_followup') %>">
+                  <%= t('user_scores.headers.total_score') %>
+              </div></td>
+              <td><div class="_tooltip" data-placement="top" data-original-title="<%= t('user_scores.headers.question_sets_followup') %>">
+                <%= t('user_scores.headers.question_sets') %>
+              </div></td>
+              <td><%= t('user_scores.headers.badge') %></td>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% @user_scores[category.id].each_with_index do |user_score, rank| %>
+              <tr class="text-center">
+                <td><b><%= rank + 1 %></b></td>
+                <td><%= user_score.user.name %></td>
+                <td><%= user_score.total_score %></td>
+                <td><%= user_score.question_sets_count %></td>
+                <td><%= t("badges.#{user_score.user.badge(category)}") %> (<%= user_score.category_score.to_i %> / 75)</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>

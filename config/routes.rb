@@ -12,16 +12,11 @@ Rails.application.routes.draw do
   # devise_for :users, controllers: { sessions: 'users/sessions' }
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  # resources :questions do 
-  #   collection { get 'rules' }
-  # end
-
   resources :categories
   resources :levels
   
-  resources "question-sets", :controller => "question_sets", :as => "question_sets" do
+  resources :question_sets, :path => 'question-sets' do
     post 'approve', on: :member
-    
     resources :questions do
       get 'list', on: :collection
     end
@@ -31,6 +26,7 @@ Rails.application.routes.draw do
     post 'finish', on: :member
   end
 
+  resources :user_scores, path: 'user-scores', only: :index
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
