@@ -71,8 +71,9 @@ class User < ActiveRecord::Base
   end
 
   def badge(category)
+    user_score = points(category)
     BADGES.each_pair do |badge, score|
-      eligible = points(category) > 0 && score.to_a.include?(points(category))
+      eligible = user_score > 0 && score.to_a.include?(user_score)
       return badge if eligible
     end
     nil
@@ -88,7 +89,7 @@ class User < ActiveRecord::Base
     user_score = self.user_scores.find_or_create_by(category_id: category.id)
     completed = category.user_question_sets.where(
       status: UserQuestionSet::STATUS.invert[:completed])
-    
+
     user_score.total_score = completed.sum(:score)
     user_score.question_sets_count = completed.size
     user_score.category_score = category_score(category)

@@ -43,6 +43,8 @@ group :development do
   # in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'rubocop'
+  gem 'bullet'
+  gem 'active_record_query_trace'
 end
 
 # Use ActiveModel has_secure_password

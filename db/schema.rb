@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 20151018113717) do
     t.datetime "updated_at"
   end
 
+  add_index "question_sets", ["category_id", "level_id", "user_id"], name: "index_question_sets", using: :btree
+
   create_table "questions", force: true do |t|
     t.integer  "question_set_id"
     t.text     "question"
@@ -59,10 +61,10 @@ ActiveRecord::Schema.define(version: 20151018113717) do
     t.datetime "updated_at"
   end
 
+  add_index "questions", ["question_set_id"], name: "index_questions_on_question_set_id", using: :btree
+
   create_table "user_question_sets", force: true do |t|
     t.integer  "user_id"
-    t.integer  "category_id"
-    t.integer  "level_id"
     t.integer  "question_set_id"
     t.integer  "score"
     t.integer  "status"
@@ -73,14 +75,16 @@ ActiveRecord::Schema.define(version: 20151018113717) do
     t.datetime "updated_at"
   end
 
+  add_index "user_question_sets", ["user_id", "question_set_id"], name: "index_user_question_sets", using: :btree
+
   create_table "user_scores", force: true do |t|
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "total_score"
     t.integer  "question_sets_count"
+    t.integer  "category_score"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_score"
   end
 
   add_index "user_scores", ["user_id", "category_id"], name: "index_user_scores_on_user_and_categories", using: :btree

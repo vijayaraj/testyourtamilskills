@@ -10,5 +10,7 @@ class CreateQuestionSets < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :question_sets, [:category_id, :level_id, :user_id], name: 'index_question_sets'
   end
 end

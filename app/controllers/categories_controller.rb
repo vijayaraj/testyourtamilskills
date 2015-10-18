@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   private
 
   def scope
-    Category
+    Category.includes(:levels)
   end
 
   def set_selected_tab

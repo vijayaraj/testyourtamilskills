@@ -2,7 +2,7 @@ class LevelsController < ApplicationController
   before_action :load_params, :set_selected_tab, only: :show
 
   def show
-    @question_sets = question_sets_scoper.paginate(
+    @question_sets = question_sets_scoper.includes(:owner).paginate(
       page: params[:page], per_page: 10)
   end
 

@@ -9,5 +9,7 @@ class CreateQuestions < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :questions, :question_set_id, name: 'index_questions_on_question_set_id'
   end
 end
