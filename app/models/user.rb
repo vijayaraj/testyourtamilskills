@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
 
   def update_user_scores(category)
     user_score = self.user_scores.find_or_create_by(category_id: category.id)
-    completed = category.user_question_sets.where(
+    completed = user_question_sets.where(category_id: category.id,
       status: UserQuestionSet::STATUS.invert[:completed])
 
     user_score.total_score = completed.sum(:score)
