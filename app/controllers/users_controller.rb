@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
   skip_before_action :deny_access, only: :home
 
-  def show
-  end
-
   def home
     @selected_tab = :rules
   end
 
-  private
-
-  def scoper
-    @user = User.find(params[:id])
+  def destroy
+    sign_out current_user
+    redirect_to root_path
   end
 end

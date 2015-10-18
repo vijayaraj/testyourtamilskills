@@ -5,8 +5,10 @@
     
     <div class="pull-right login-section">
       <% if current_user %>
-        <i class=""> </i>
-        <div class="_tooltip" data-placement="bottom" data-original-title="<%= t("home.google") %>"><%= current_user.name %></div>
+        <div class="text-center">
+          <div class="hide-in-mobile"><%= current_user.name %><br></div>
+          <%= link_to "", destroy_user_session_path, :method => :delete, :class => "fa fa-power-off _tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.logout") %>
+        </div>
       <% else %>
         <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-power-off _tooltip", "id" => "login-tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.login") %>
       <% end %>

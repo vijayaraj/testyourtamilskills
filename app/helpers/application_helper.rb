@@ -29,4 +29,12 @@ module ApplicationHelper
     return 'active list-group-item' if @selected_tab.to_s.eql?(option[1])
     'list-group-item'
   end
+
+  def ta_hello_text(text)
+    current_user ? %(#{text}, #{current_user.name}) : %(#{text}.)
+  end
+
+  def en_hello_text(text)
+    current_user ? %(#{text} #{current_user.name},) : %(#{text} there,)
+  end
 end
