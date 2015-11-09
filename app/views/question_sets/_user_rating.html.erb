@@ -1,0 +1,63 @@
+<div class="pull-left stats-section">
+  <% if @user_question_set and @user_question_set.completed? %>
+    <b><%= t("question_sets.show.your_answer") %></b>:  <%= @user_answer %><br>
+
+    <div id="quest-stats-<%= question.id %>">
+      <% if rating = question.rating(current_user) %>
+        <a href="#" class="_tooltip" data-original-title="<%= t('question_sets.show.feedback_followup') %>" data-toggle="modal" data-target="#feedback-modal-<%= question.id %>">
+          <%= t('question_sets.show.feedback') %>
+        </a>
+
+        <div id="feedback-modal-<%= question.id %>" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <%= form_tag rate_question_set_question_path(question.question_set.id, question.id), :method => :put do %>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title"><%= t('question_sets.show.feedback') %></h4>
+                </div>
+
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <textarea class="form-control" name="question[ratings_attributes][][feedback]" rows=
+                      "3" placeholder="<%= t('question_sets.show.feedback_placeholder') %>"><%= rating.feedback %></textarea>
+                      <%= hidden_field_tag "question[ratings_attributes][][id]", rating.id %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <%= submit_tag t("actions.create"), :class => "btn btn-primary" %>
+                  <button type="button" class="btn btn-default" data-dismiss="modal"><%= t("actions.close") %></button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if rating_score = question.rating_score(current_user) %>
+        <div class="row">
+          <div class="col-sm-6 pull-left">
+            <%= t("question_sets.show.your_rating") %><br>
+            <span class="_rating read-only-user" id="read-only-rating"
+            data-user-rating="<%= rating_score %>"></span>
+          </div>
+
+          <div class="col-sm-6">
+            <%= t("question_sets.show.overall_rating") %><br>
+            <span class="_rating read-only-overall" id="read-only-overall-rating"
+            data-overall-rating="<%= question.overall_rating %>"></span>
+          </div>
+        </div>
+      <% else %>
+        <%= t("question_sets.show.your_rating") %><br>
+        <div class="_rating user-rating" id="user-rating" data-rate-url="<%=
+          rate_question_set_question_path(question.question_set, question) %>"
+          data-question-id="<%= question.id %>"></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

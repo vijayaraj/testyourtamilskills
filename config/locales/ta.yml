@@ -11,7 +11,7 @@ ta:
   badges:
     rookie: கற்றுக்குட்டி
     apprentice: சிட்டன்
-    scholar: சட்டன் 
+    scholar: சட்டன்
     master: அதிபதி
     god: நிபுணன்
 
@@ -28,19 +28,19 @@ ta:
 
   en-home:
     hello: Hi
-    mission: This is a small effort to test your skills in Tamil. Also to remind you, the forgotten and the less used words in the language. 
-    rule_text: Three sections in the list - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard. Question sets are listed in each level. You will have to complete atleast one question set to move up a level. 
+    mission: This is a small effort to test your skills in Tamil. Also to remind you, the forgotten and the less used words in the language.
+    rule_text: Three sections in the list - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard. Question sets are listed in each level. You will have to complete atleast one question set to move up a level.
     scoring: There are 15 questions in each set. 1 right answer = 1 point. Totally, 15 * 5 = 75 points. And, a ranking table based on the score.
     contribution: Also, you can add your questions in the site. They will be available for other users to answer. Good luck!
     points: points
-    
+
   en-badges:
     rookie: Rookie
     apprentice: Apprentice
-    scholar: Scholar 
+    scholar: Scholar
     master: Master
     god: God
-    
+
   devise:
     omniauth_callbacks:
       user:
@@ -68,19 +68,20 @@ ta:
     login_to_access: "இப்பக்கத்தைக் காண கூகுல் கணக்குடன் புகுபதிகை செய்யுங்கள்.  <a class='' href='/users/auth/google_oauth2'>புகுபதிகை</a>"
     question_limit_reached: 15 கேள்விகள் சேர்த்துவிட்டீர்கள்! :)
     question_set_published: தொகுப்பு வெளியிடப்பட்டுவிட்டது. இனி திருத்த இயலாது.
+    owner_cannot_rate: உங்கள் கேள்விக்கு நீங்கள் மதிப்பிடயியலாது.
 
-  categories: 
+  categories:
     your_level: உங்கள் நிலை
-  
+
   levels:
-    not_allowed: முந்தைய நிலையை முடியுங்கள் 
+    not_allowed: முந்தைய நிலையை முடியுங்கள்
     progress:
       in_progress: நிலுவை
       completed: செய்தாயிற்று
       failure: பிழை
       not_started: ""
     start_quiz_text: ""
-    no_question_set_text: "இந்நிலைக்கு கேள்விகள் இன்னும் சேர்க்கப்படவில்லை. முயற்சி செய்துக் கொண்டே இருங்கள். மேலும் நீங்கள் <a href='/question-sets'>இப்பக்கத்தில்</a> உங்கள் கேள்விகளைப் பதியலாம்." 
+    no_question_set_text: "இந்நிலைக்கு கேள்விகள் இன்னும் சேர்க்கப்படவில்லை. முயற்சி செய்துக் கொண்டே இருங்கள். மேலும் நீங்கள் <a href='/question-sets'>இப்பக்கத்தில்</a> உங்கள் கேள்விகளைப் பதியலாம்."
 
   question_sets:
     index:
@@ -92,9 +93,17 @@ ta:
       count: கேள்விகள்
       owner: உரிமையாளர்
       your_score: உங்கள் மதிப்பெண்
-      one_or_two_words: ஓரிரண்டு வார்த்தைகளில் 
+      one_or_two_words: ஓரிரண்டு வார்த்தைகளில்
     show:
       your_answer: உங்கள் பதில்
+      your_rating: உங்கள் மதிப்பீடு
+      overall_rating: மொத்த மதிப்பீடு
+      feedback: கருத்து பதிவு
+      feedbacks: கருத்துகள்
+      feedback_followup: இக்கேள்விக்கு உங்கள் கருத்தைத் தெரிவிக்க இங்கே சொடுக்குங்கள்.
+      feedback_placeholder: இக்கேள்விக்கு உங்கள் கருத்துக்களை ஓரிரு வார்த்தைகளில் பதிவு செய்யுங்கள்.
+      answer_count: விடையளித்தவர்கள்
+      right_answer_count: சரியாக விடையளித்தவர்கள்
     no_question_sets: இப்பகுதியில் நீங்கள் உங்கள் கேள்விகளைப் பதியலாம். ஒரு தொகுப்பில் 15 கேள்விகளென, ஏதெனுமொரு பிரிவில் ஒரு நிலையைத் தேர்ந்தெடுத்து சேர்த்து விடுங்கள். அவற்றிற்கு விரைவில் மற்ற பயனர்கள் பதிலளிக்களாம்.
 
   questions:
@@ -104,14 +113,14 @@ ta:
       choice: தெரிவு
       optional: கட்டாயமல்ல
       name: பெயர்
-      one_or_two_lines: ஓரிரு வரிகளில் 
+      one_or_two_lines: ஓரிரு வரிகளில்
       choice_text: தெரிவுகள், வரிசை மாற்றிக் காட்டப்படும்.
     not_answered: பதிலளிக்கவில்லை
 
   user_scores:
     title: தரவரிசைப்பட்டியல்
     headers:
-      rank: வரிசை	
+      rank: வரிசை
       name: பெயர்
       total_score: புள்ளிகள்
       total_score_followup: விடையளித்தத் தொகுப்புகளின் மொத்தப் புள்ளிகள்

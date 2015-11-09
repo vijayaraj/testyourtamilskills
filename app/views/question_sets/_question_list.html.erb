@@ -1,71 +1,124 @@
 <% if @questions.present? %>
   <div class="title-section"><h3><%= t("questions.title") %></h3><br></div>
-  
+
   <div class="questions-section">
     <div class="panel-group" id="accordion">
       <% @questions.each_with_index do |question, index| %>
-        
-        <% user_answer = @user_question_set.answer(question) if @user_question_set %>
+
+        <% @user_answer = @user_question_set.answer(question) if @user_question_set %>
 
         <div class="panel panel-default">
           <div class="panel-heading">
             <div data-toggle="collapse" data-parent="#accordion" href="<%= %(#collapse#{index}) %>">
               <h4 class="panel-title clickable">
                 <% if @user_question_set and @user_question_set.completed? %>
-                  <i class="<%= %(col-lg-1 fa fa-#{answer_icon(question, user_answer)}) %>"></i>
+                  <i class="<%= %(col-lg-1 fa fa-#{answer_icon(question, @user_answer)}) %>"></i>
                 <% end %>
                 <%= question.question %>
               </h4>
             </div>
           </div>
-          
+
           <div id="<%= %(collapse#{index}) %>" class="panel-collapse collapse <%= index.eql?(0) ? 'in' : '' %>">
             <div class="panel-body">
               <div class="pull-right">
-                <% if @user_question_set and @user_question_set.completed? %> 
-                  <%= t("question_sets.show.your_answer") %>:  <%= user_answer %>
-                <% end %>
-                <% if !@user_question_set and !question.question_set.approved %> 
+                <% if !@user_question_set and !question.question_set.approved %>
                   <%= link_to t('actions.edit'), edit_question_set_question_path(question.question_set.id, question.id) %>
                 <% end %>
               </div>
-              
-              <div class="pull-left">
-                <div class="col-lg-4">
-                  <%= radio_button_tag("choices#{index}[]", index, true, disabled: true) %> 
+
+              <div class="pull-left choices-section">
+                <div class="">
+                  <%= radio_button_tag("choices#{index}[]", index, true, disabled: true) %>
                   <span class="choice-div"><%= question.answer %></span>
                 </div>
-                <div class="col-lg-4">
-                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
-                  <%= question.choices[0] %>
+                <div class="">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>
+                  <span class="choice-div"><%= question.choices[0] %></span>
                 </div>
-                <div class="col-lg-4">
-                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %> 
-                  <%= question.choices[1] %>
+                <div class="">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>
+                  <span class="choice-div"><%= question.choices[1] %></span>
                 </div>
-                <div class="col-lg-4">
-                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>  
-                  <%= question.choices[2] %>
+                <div class="">
+                  <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>
+                  <span class="choice-div"><%= question.choices[2] %></span>
                 </div>
                 <% if question.choices[3].present? %>
-                  <div class="col-lg-4">
-                    <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>   
-                    <%= question.choices[3] %>
+                  <div class="">
+                    <%= radio_button_tag("choices#{index}[]", index, false, disabled: true) %>
+                    <span class="choice-div"><%= question.choices[3] %></span>
                   </div>
                 <% end %>
               </div>
-              
+
+              <% if @question_set.owner?(current_user) %>
+                <%= render partial: "owner_rating", locals: { :question => question } %>
+              <% else %>
+                <%= render partial: "user_rating", locals: { :question => question } %>
+              <% end %>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-    
+
     <div class="text-center">
-      <%= will_paginate @questions, :renderer => BootstrapPagination::Rails, 
+      <%= will_paginate @questions, :renderer => BootstrapPagination::Rails,
                                 :previous_label => "<b class='arrow-left'><</b>",
                                 :next_label => "<b class='arrow-right'>></b>",
                                 :class => "pagination " %>
     </div>
   </div>
 <% end %>
+
+<script>
+  jQuery(document).ready(function() {
+    $(".user-rating").raty({
+      path: '/assets/',
+      click: function(score, evt) {
+        var questionId = $(this).data('question-id')
+        $(this).raty('readOnly', 1)
+        $.ajax({
+          dataType: 'json',
+          method: 'PUT',
+          url:  $(this).data('rate-url'),
+          data: {
+            'question': { 'ratings_attributes': [{
+              'rating': score
+            }] }
+          },
+          beforeSend: function() {
+            var sectionId = "#quest-stats-" + questionId
+            $(sectionId).html("<div class='col-centered text-center'><br><img src='/assets/loading.svg' /></div>");
+          },
+          success: function (data) {
+            var sectionId = "#quest-stats-" + questionId
+            $(sectionId).load(location.href + " " + sectionId + ">*", "", function(){
+              setRatyScore()
+            })
+          }
+        });
+      }
+    })
+    setRatyScore();
+
+    function setRatyScore(){
+      $('.read-only-user').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+          return $(this).data('user-rating')
+        }
+      })
+
+      $('.read-only-overall').raty({
+        path: '/assets/',
+        readOnly: true,
+        score: function() {
+          return $(this).data('overall-rating')
+        }
+      })
+    }
+  })
+</script>

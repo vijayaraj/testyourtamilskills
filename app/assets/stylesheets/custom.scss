@@ -16,8 +16,8 @@ body {
   @media only screen and (max-width: 768px) {
     table { width: 90% }
   }
-  ul{ 
-    list-style: none; 
+  ul{
+    list-style: none;
     .lang {
       display: inline;
       padding: 5px 10px;
@@ -53,7 +53,7 @@ a.active{
   color: #5f5f5f;
   font-style: italic;
 }
-a:hover{
+a:hover, a:focus{
   text-decoration: none;
   color: #5f5f5f;
   font-weight: 600;
@@ -106,8 +106,8 @@ tr.clickable-row, .clickable { cursor: pointer; }
     padding: 15px;
     .login-section { margin-top: -35px; }
   }
-  h2 { 
-    margin-top: 0px; 
+  h2 {
+    margin-top: 0px;
     padding-top: 3px;
   }
 }
@@ -116,7 +116,7 @@ tr.clickable-row, .clickable { cursor: pointer; }
 .container{
   border-left: 1px solid #F0F0F0;
   border-right: 1px solid #F0F0F0;
-  
+
   .content{
     margin: 0px -15px 0px -15px;
 
@@ -182,7 +182,7 @@ tr.clickable-row, .clickable { cursor: pointer; }
     vertical-align: middle;
     z-index: 99;
   }
-   
+
   .menu-btn span {
     display: block;
     width: 19px;
@@ -191,9 +191,9 @@ tr.clickable-row, .clickable { cursor: pointer; }
     background: #5f5f5f;
     z-index: 99;
   }
-      
+
   .expand {
-    display: block !important; 
+    display: block !important;
   }
 }
 
@@ -233,12 +233,12 @@ tr.clickable-row, .clickable { cursor: pointer; }
     }
   }
   .user-scores-section{
-    padding: 30px 50px; 
+    padding: 30px 50px;
   }
   .pagination-section{
     // Pagination
-    a { 
-      font-style: normal; 
+    a {
+      font-style: normal;
     }
     .pagination {
       @media only screen and (min-width: 768px) {
@@ -263,7 +263,18 @@ tr.clickable-row, .clickable { cursor: pointer; }
       font-size: 18px;
       padding: 12px 22.07px;
     }
-    
   }
 }
 
+.questions-section{
+  .choices-section{
+    width: 60%;
+    padding-left: 8%;
+    .choice-div{
+      padding-left: 5px;
+    }
+  }
+  .stats-section{
+    width: 40%;
+  }
+}

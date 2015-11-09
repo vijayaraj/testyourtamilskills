@@ -1,5 +1,6 @@
 $(function () {
   $('._tooltip').tooltip()
+  $('._rating').raty({ path: '/assets/' })
 })
 
 jQuery(document).ready(function($) {
@@ -7,4 +8,3 @@ jQuery(document).ready(function($) {
     window.document.location = $(this).data("href");
   });
 });
-

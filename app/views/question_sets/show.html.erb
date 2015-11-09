@@ -6,7 +6,7 @@
       <%= category_link %> / <%= level_link %> / <%= @question_set.name %>
     <% end %>
   </div>
-  
+
   <div>
     <div class="lead pull-left"><%= @question_set.name %></div>
     <% if @question_set.owner?(current_user) and !@question_set.approved? %>
@@ -43,7 +43,7 @@
       <div class="col-sm-4"><%= %(#{@user_question_set.score} (#{15 - @user_question_set.score.to_i} தவறுகள்)) %></div>
     </div><br>
   <% end %>
-  
+
   <% if @question_set.owner %>
     <div class="form-group">
       <label class="col-sm-4" for="name"><%= t("question_sets.headers.owner") %></label>

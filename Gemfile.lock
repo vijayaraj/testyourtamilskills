@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/bmc/jquery-raty-rails.git
+  revision: d36753c77c9b825e6e2746c1c70c3b11b85b86cc
+  specs:
+    jquery-raty-rails (0.0.2)
+      rails (>= 3.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -42,6 +49,8 @@ GEM
     bullet (4.14.4)
       activesupport (>= 3.0.0)
       uniform_notifier (>= 1.6.0)
+    byebug (5.0.0)
+      columnize (= 0.9.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -49,6 +58,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    columnize (0.9.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -174,12 +184,14 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.2.0)
   bullet
+  byebug
   coffee-rails (~> 4.0.0)
   devise
   font-awesome-sass
   hashie
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-raty-rails!
   omniauth
   omniauth-google-oauth2
   pg

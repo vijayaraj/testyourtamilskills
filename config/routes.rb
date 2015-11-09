@@ -8,17 +8,18 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   resources :users
-  
+
   # devise_for :users, controllers: { sessions: 'users/sessions' }
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :categories
   resources :levels
-  
+
   resources :question_sets, :path => 'question-sets' do
     post 'approve', on: :member
     resources :questions do
       get 'list', on: :collection
+      put 'rate', on: :member
     end
   end
 

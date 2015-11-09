@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
                                     class_name: 'QuestionSet',
                                     source: 'question_set'
   has_many :user_scores
+  has_many :question_ratings, class_name: :'UserQuestionRating'
 
   def self.current
     Thread.current[:user]

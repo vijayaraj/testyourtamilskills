@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+gem 'jquery-raty-rails', github: 'bmc/jquery-raty-rails'
 gem 'font-awesome-sass'
 
 gem 'devise'
@@ -45,6 +46,7 @@ group :development do
   gem 'rubocop'
   gem 'bullet'
   gem 'active_record_query_trace'
+  gem 'byebug'
 end
 
 # Use ActiveModel has_secure_password

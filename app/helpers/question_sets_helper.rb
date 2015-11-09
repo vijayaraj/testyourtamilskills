@@ -28,4 +28,10 @@ module QuestionSetsHelper
   def answer_icon(question, answer)
     (question.answer.eql?(answer)) ? 'check' : 'times'
   end
+
+  def feedbacks(question)
+    question.ratings.includes(:user).map do |r|
+      %(#{r.feedback} - #{r.user.name}) if r.feedback.present?
+    end.compact
+  end
 end

@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap/tooltip
+//= require jquery.raty
+//= require jquery.raty.min
 //= require_tree .
