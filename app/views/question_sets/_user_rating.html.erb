@@ -1,8 +1,32 @@
-<div class="pull-left stats-section">
+<div class="pull-left stats-section text-center col-centered">
   <% if @user_question_set and @user_question_set.completed? %>
-    <b><%= t("question_sets.show.your_answer") %></b>:  <%= @user_answer %><br>
+    <%= t("question_sets.show.your_answer") %>: <b><%= @user_answer %></b><br>
+    <%= t("question_sets.show.answer_count") %>:
+    <b class="_tooltip" data-original-title="<%= t("question_sets.show.right_answer_count") %>"><%= question.right_answer_count.to_i %></b> /
+    <b class="_tooltip" data-original-title="<%= t("question_sets.show.answer_count") %>"><%= UserQuestionSet.answered_by(question.question_set_id).length %></b>
 
     <div id="quest-stats-<%= question.id %>">
+      <% if rating_score = question.rating_score(current_user) %>
+        <div class="row">
+          <div class="col-sm-6 pull-left">
+            <%= t("question_sets.show.your_rating") %><br>
+            <span class="_rating read-only-user" id="read-only-rating"
+            data-user-rating="<%= rating_score %>"></span>
+          </div>
+
+          <div class="col-sm-6">
+            <%= t("question_sets.show.overall_rating") %><br>
+            <span class="_rating read-only-overall" id="read-only-overall-rating"
+            data-overall-rating="<%= question.overall_rating %>"></span>
+          </div>
+        </div>
+      <% else %>
+        <%= t("question_sets.show.your_rating") %><br>
+        <div class="_rating user-rating col-centered" id="user-rating" data-rate-url="<%=
+          rate_question_set_question_path(question.question_set, question) %>"
+          data-question-id="<%= question.id %>"></div>
+      <% end %>
+
       <% if rating = question.rating(current_user) %>
         <a href="#" class="_tooltip" data-original-title="<%= t('question_sets.show.feedback_followup') %>" data-toggle="modal" data-target="#feedback-modal-<%= question.id %>">
           <%= t('question_sets.show.feedback') %>
@@ -36,27 +60,6 @@
             <% end %>
           </div>
         </div>
-      <% end %>
-
-      <% if rating_score = question.rating_score(current_user) %>
-        <div class="row">
-          <div class="col-sm-6 pull-left">
-            <%= t("question_sets.show.your_rating") %><br>
-            <span class="_rating read-only-user" id="read-only-rating"
-            data-user-rating="<%= rating_score %>"></span>
-          </div>
-
-          <div class="col-sm-6">
-            <%= t("question_sets.show.overall_rating") %><br>
-            <span class="_rating read-only-overall" id="read-only-overall-rating"
-            data-overall-rating="<%= question.overall_rating %>"></span>
-          </div>
-        </div>
-      <% else %>
-        <%= t("question_sets.show.your_rating") %><br>
-        <div class="_rating user-rating" id="user-rating" data-rate-url="<%=
-          rate_question_set_question_path(question.question_set, question) %>"
-          data-question-id="<%= question.id %>"></div>
       <% end %>
     </div>
   <% end %>

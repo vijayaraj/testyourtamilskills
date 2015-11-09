@@ -1,10 +1,14 @@
-<div class="pull-left stats-section row">
-    <div class="col-sm-6 pull-left">
+<div class="pull-left stats-section row text-center col-centered">
+  <% if question.question_set.approved %>
+    <div class="col-sm-12">
       <span class="_rating read-only-overall" id="read-only-overall-rating"
-      data-overall-rating="<%= question.overall_rating%>"></span>
+      data-overall-rating="<%= question.overall_rating %>"></span>
+      <span class="_tooltip" data-original-title="<%= t('question_sets.show.ratings_count') %>">
+        (<%= question.ratings.count %>)</span>
     </div>
-    <div class="col-sm-6">
-      <a href="#" data-toggle="modal" data-target="#feedback-list-modal-<%= question.id %>"><%= %(#{t('question_sets.show.feedbacks')} (#{feedbacks(question).count})) %></a><br>
+
+    <div class="col-sm-12">
+      <a href="#" data-toggle="modal" data-target="#feedback-list-modal-<%= question.id %>"><%= %(#{t('question_sets.show.feedbacks')} (#{feedbacks(question).count})) %></a>
       <div id="feedback-list-modal-<%= question.id %>" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
@@ -16,8 +20,12 @@
               </div>
 
               <div class="modal-body">
-                <% feedbacks(question).each do |feedback| %>
-                  <div class="form-group"><p><%= feedback %></p></div><hr>
+                <% if feedback_list = feedbacks(question) %>
+                  <% feedback_list.each do |feedback| %>
+                    <div class="form-group text-left"><p><%= feedback %></p></div><hr>
+                  <% end %>
+                <% else %>
+                  <div class="form-group"><p><%= t('question_sets.show.no_feedback') %></p></div>
                 <% end %>
               </div>
 
@@ -29,9 +37,10 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-12"><br>
+    <div class="col-sm-12">
       <%= t("question_sets.show.answer_count") %>:
       <b class="_tooltip" data-original-title="<%= t("question_sets.show.right_answer_count") %>"><%= question.right_answer_count.to_i %></b> /
       <b class="_tooltip" data-original-title="<%= t("question_sets.show.answer_count") %>"><%= UserQuestionSet.answered_by(question.question_set_id).length %></b>
     </div>
+  <% end %>
 </div>
