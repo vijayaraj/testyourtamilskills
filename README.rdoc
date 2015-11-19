@@ -1,1 +1,1 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/092142f906de47ebb7dafe844854f0c9)](https://www.codacy.com/app/vijayaraj/testyourtamilskills)
+{<img src="https://api.codacy.com/project/badge/grade/092142f906de47ebb7dafe844854f0c9" alt="Codacy code quality" />}[https://www.codacy.com/app/vijayaraj/testyourtamilskills]
