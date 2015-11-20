@@ -97,7 +97,7 @@ tr.clickable-row, .clickable { cursor: pointer; }
 }
 
 .header, .footer{
-  min-height: 50px;
+  min-height: 40px;
   background-color: #F0F0F0;
   @media only screen and (min-width: 768px) {
     padding: 15px 0px;
@@ -108,7 +108,13 @@ tr.clickable-row, .clickable { cursor: pointer; }
   }
   h2 {
     margin-top: 0px;
-    padding-top: 3px;
+    margin-bottom: 0px;
+  }
+  img{
+    width: 30px;
+    border-radius: 20px;
+    filter: gray;
+    -webkit-filter: grayscale(1);
   }
 }
 
@@ -175,7 +181,7 @@ tr.clickable-row, .clickable { cursor: pointer; }
 
   .menu-btn div {
     padding-right: 8px;
-    margin-top: -50px;
+    margin-top: -42px;
     line-height: 1.2;
     font-size: 18px;
     font-weight: 200;
@@ -277,4 +283,8 @@ tr.clickable-row, .clickable { cursor: pointer; }
   .stats-section{
     width: 40%;
   }
+}
+
+.freshwidget-theme{
+  display: none;
 }

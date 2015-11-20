@@ -42,6 +42,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def image_url
+    identities.first.auth_data['info']['image']
+  rescue
+    nil
+  end
+
   def filter_user_question_sets(category, level)
     user_question_sets.includes(:question_set).select do |uqs|
       uqs.question_set.category_id.eql?(category.id) &&
@@ -54,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def category_score(category)
-    category.levels.inject(0) do |category_score, level|
+    category.levels.each_with_object(0) do |level, category_score|
       category_score += score(category, level).to_i; category_score
     end
   end
@@ -81,7 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def points(category)
-    category.levels.inject(0) do |points, level|
+    category.levels.each_with_object(0) do |level, points|
       points += score(category, level).to_i; points
     end
   end

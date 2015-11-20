@@ -50,8 +50,12 @@ class QuestionSetsController < ApplicationController
     current_user.published_question_sets
   end
 
+  def question_set_scoper
+    QuestionSet
+  end
+
   def load_question_set
-    @question_set = QuestionSet.find(params[:id])
+    @question_set = question_set_scoper.find(params[:id])
   end
 
   def question_set_params

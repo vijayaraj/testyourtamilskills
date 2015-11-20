@@ -1,11 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :set_published_question_set,
-    :set_question_sets_tab, except: [:index, :rate]
+                :set_question_sets_tab, except: [:index, :rate]
   before_action :can_add?, only: [:new, :create, :show]
   before_action :can_edit?, :load_question, only: [:edit, :update]
 
   before_action :set_answered_question_set, :can_rate?,
-    :load_question, only: :rate
+                :load_question, only: :rate
   before_action :set_question_set_params, :time_started?, only: :index
 
   def new
@@ -49,12 +49,16 @@ class QuestionsController < ApplicationController
   def rate
     respond_to do |format|
       if @question.update_attributes(rating_params)
-        format.html { redirect_to question_set_path(@question_set.id),
-          notice: I18n.t('notifications.success') }
+        format.html do
+          redirect_to question_set_path(@question_set.id),
+                      notice: I18n.t('notifications.success')
+        end
         format.json { render json: { success: true } }
       else
-        format.html { redirect_to question_set_path(@question_set.id), flash: {
-          error: I18n.t('notifications.error') } }
+        format.html do
+          redirect_to question_set_path(@question_set.id),
+                      flash: { error: I18n.t('notifications.error') }
+        end
         format.json { render json: { success: false } }
       end
     end
@@ -126,12 +130,14 @@ class QuestionsController < ApplicationController
   end
 
   def rating_params
-    rating_params = params.require(:question).permit(:id,
+    rating_params = params.require(:question).permit(
+      :id,
       ratings_attributes: [:id, :user_id, :rating, :feedback]
     )
     # Temporary hack for AJAX param setting
     if rating_params[:ratings_attributes].is_a? Hash
-      rating_params[:ratings_attributes] = [rating_params[:ratings_attributes]["0"]]
+      rating_params[:ratings_attributes] =
+          [rating_params[:ratings_attributes]['0']]
     end
     rating_params[:ratings_attributes][0][:user_id] = current_user.id
     rating_params

@@ -9,8 +9,12 @@ class LevelsController < ApplicationController
   private
 
   def load_params
-    @level = Level.find_by_id(params[:id])
+    @level = scoper.find_by_id(params[:id])
     @category = @level.category
+  end
+
+  def scoper
+    Level
   end
 
   def set_selected_tab

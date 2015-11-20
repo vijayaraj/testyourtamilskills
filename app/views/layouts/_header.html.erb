@@ -1,21 +1,46 @@
 <div class="header">
+
   <div class="container">
-    <div class="hide-in-mobile pull-left"><h2><%= t("header_title") %></h2></div>
-    <div class="show-in-mobile text-center"><h2><%= t("header_title") %></h2></div>
-    
-    <div class="pull-right login-section">
-      <% if current_user %>
-        <div class="text-center">
-          <div class="hide-in-mobile"><%= current_user.name %><br></div>
-          <%= link_to "", destroy_user_session_path, :method => :delete, :class => "fa fa-power-off _tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.logout") %>
-        </div>
-      <% else %>
-        <%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-power-off _tooltip", "id" => "login-tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.login") %>
-      <% end %>
-    </div>
-  </div>
+		<div class="row">
+      <div class="col-md-6">
+        <div class="show-in-mobile pull-left text-center"><h2><%= t("header_title") %></h2></div>
+        <div class="hide-in-mobile"><h2><%= t("header_title") %></h2></div>
+      </div>
+
+			<div class="col-md-6">
+        <% if current_user %>
+          <% if current_user.image_url %>
+            <img class="pull-right" data-toggle="dropdown" class="dropdown-toggle" src="<%= current_user.image_url %>" />
+          <% else %>
+            <i class="pull-right fa fa-user fa-2x" data-toggle="dropdown" class="dropdown-toggle"></i>
+          <% end %>
+          <ul class="dropdown-menu pd-t-0 pull-right" role="menu">
+            <li role="presentation" class="dropdown-header">
+              <b><%= current_user.name %></b>
+            </li>
+            <li class='divider'></li>
+            <li role="menuitem" class="hide-in-mobile">
+                <a class="freshwidget-support" href="#">கருத்துப்பதிவு</a>
+            </li>
+            <li role="menuitem">
+              <a role="menuitem">
+                <%= link_to t("actions.logout"), destroy_user_session_path, :method => :delete, :class => "" %>
+              </a>
+            </li>
+          </ul>
+        <% else %>
+          <div class="pull-right col-md-1"><%= link_to " ", user_omniauth_authorize_path(:google_oauth2), :class => "fa fa-power-off _tooltip", "id" => "login-tooltip", "data-placement" => "bottom", "data-original-title" => t("actions.login") %></div>
+        <% end %>
+			</div>
+		</div>
+	</div>
 </div>
 
-<script>
-  $('#login-tooltip').tooltip({trigger: 'manual'}).tooltip('show');
+<script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+<script type="text/javascript">
+  $('#login-tooltip').tooltip({trigger: 'manual'}).tooltip('show')
+  $('.freshwidget-support').on('click', function(){
+      $('#freshwidget-button .freshwidget-theme').get(0).click()
+  })
+  FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=%E0%AE%87%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AE%B3%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AF%88%E0%AE%AA%E0%AF%8D+%E0%AE%AA%E0%AE%B1%E0%AF%8D%E0%AE%B1%E0%AE%BF%E0%AE%AF+%E0%AE%89%E0%AE%99%E0%AF%8D%E0%AE%95%E0%AE%B3%E0%AF%8D+%E0%AE%95%E0%AE%B0%E0%AF%81%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AF%81%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%B3%E0%AF%88%E0%AE%A4%E0%AF%8D+%E0%AE%A4%E0%AF%86%E0%AE%B0%E0%AE%BF%E0%AE%B5%E0%AE%BF%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AF%81+%E0%AE%89%E0%AE%A4%E0%AE%B5%E0%AF%81%E0%AE%99%E0%AF%8D%E0%AE%95%E0%AE%B3%E0%AF%8D.&submitThanks=%E0%AE%A8%E0%AE%A9%E0%AF%8D%E0%AE%B1%E0%AE%BF!&screenshot=no&attachFile=no&searchArea=no", "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "கருத்துப்பதிவு", "buttonColor": "white", "buttonBg": "#5f5f5f", "alignment": "3", "offset": "65px", "submitThanks": "நன்றி!", "formHeight": "500px", "screenshot": "no", "url": "https://vidaiyali.freshdesk.com"} );
 </script>
