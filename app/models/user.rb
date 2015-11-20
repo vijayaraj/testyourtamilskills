@@ -60,8 +60,8 @@ class User < ActiveRecord::Base
   end
 
   def category_score(category)
-    category.levels.each_with_object(0) do |level, category_score|
-      category_score += score(category, level).to_i; category_score
+    category.levels.reduce(0) do |category_score, level|
+      category_score += score(category, level).to_i
     end
   end
 
@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def points(category)
-    category.levels.each_with_object(0) do |level, points|
+    category.levels.reduce(0) do |points, level|
       points += score(category, level).to_i; points
     end
   end
