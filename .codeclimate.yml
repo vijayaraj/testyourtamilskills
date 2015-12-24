@@ -1,0 +1,33 @@
+---
+engines:
+  rubocop:
+    enabled: true
+    checks:
+      Rubocop/Style/Documentation:
+        enabled: false
+  fixme:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+        ruby:
+          mass_threshold: 20
+          paths:
+            - app/**/*.rb
+            - lib/**/*.rb
+  bundler-audit:
+    enabled: true
+  brakeman:
+    enabled: true
+ratings:
+  paths:
+  - "**.rb"
+  - Gemfile.lock
+exclude_paths:
+- app/assets/*
+- config/**/*
+- db/**/*
+- spec/**/*
+- vendor/**/*
+- bin/**/*
