@@ -4,10 +4,11 @@ body {
   color: #34495e;
   font-family: 'Lato', sans-serif;
   line-height: 1.7 !important;
+  @media only screen and (min-width: 768px) { font-size: 19px; }
+  @media only screen and (min-width: 768px) { font-size: 18px; }
 }
 
 .home-section{
-  font-size: 17px;
   @media only screen and (min-width: 768px) {
     margin: 0px 10px;
     padding: 0px 20px;
@@ -109,6 +110,7 @@ tr.clickable-row, .clickable { cursor: pointer; }
   h2 {
     margin-top: 0px;
     margin-bottom: 0px;
+    margin-right: -100px;
   }
   img{
     width: 30px;
@@ -122,6 +124,7 @@ tr.clickable-row, .clickable { cursor: pointer; }
 .container{
   border-left: 1px solid #F0F0F0;
   border-right: 1px solid #F0F0F0;
+  width: 90%;
 
   .content{
     margin: 0px -15px 0px -15px;
@@ -157,7 +160,6 @@ tr.clickable-row, .clickable { cursor: pointer; }
 
 // Sidebar
 .sidebar{
-  font-size: 16px;
   a { font-style: normal; }
 
   .list-group-item:first-child, .list-group-item:last-child{
@@ -183,7 +185,6 @@ tr.clickable-row, .clickable { cursor: pointer; }
     padding-right: 8px;
     margin-top: -42px;
     line-height: 1.2;
-    font-size: 18px;
     font-weight: 200;
     vertical-align: middle;
     z-index: 99;
@@ -217,14 +218,12 @@ tr.clickable-row, .clickable { cursor: pointer; }
 
 // Right content
 .right-content{
-  font-size: 17px;
   margin-bottom: -10px;
 
   .title-section{
     height: 20%;
   }
   .content-section{
-    font-size: 17px;
     height: 69%;
     @media only screen and (min-width: 768px) {
       padding: 10px 90px;
@@ -243,31 +242,33 @@ tr.clickable-row, .clickable { cursor: pointer; }
   }
   .pagination-section{
     // Pagination
+    width: 110%;
+    @media only screen and (min-width: 768px) {
+      margin: 110px 0px 0px;
+      font-size: 18px;
+    }
+    @media only screen and (min-height: 768px) {
+      margin: 275px 0px 0px;
+      font-size: 22px;
+    }
+    ul{
+      width: 108.6%;
+      margin: 1px 0px 1px -26px;
+    }
     a {
       font-style: normal;
-    }
-    .pagination {
-      @media only screen and (min-width: 768px) {
-        margin: 110px -26px 0px;
-      }
-      @media only screen and (min-height: 768px) {
-        margin: 275px -26px 0px;
-      }
     }
     .pagination>li:first-child>a, .pagination>li:first-child>span{
       border-top-left-radius: 0px;
       border-bottom-left-radius: 0px
     }
-
     .pagination>li:last-child>a, .pagination>li:last-child>span{
       border-top-right-radius: 0px;
       border-bottom-right-radius: 0px
     }
-
     .pagination>li>a, .pagination>li>span{
       font-family: 'Source Sans Pro', sans-serif;
-      font-size: 18px;
-      padding: 12px 22.07px;
+      padding: 1.5% 2.2%;
     }
   }
 }
