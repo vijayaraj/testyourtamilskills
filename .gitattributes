@@ -1,0 +1,5 @@
+app/assets/javascripts/application.js linguist-vendored=false
+public/assets/*.js linguist-vendored=false
+
+app/assets/stylesheets/application.css linguist-vendored=false
+public/assets/*.css linguist-vendored=false
