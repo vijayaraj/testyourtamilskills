@@ -1,5 +1,5 @@
 <div class="details">
-  
+
   <div class="home-section">
     <div id="switch-lang" class="pull-right">
       <ul>
@@ -7,10 +7,10 @@
         <li class="lang" id="en">english</li>
       </ul>
     </div><br>
-  
+
     <div id="ta-content">
       <p><%= ta_hello_text t("home.hello") %></p>
-      <p><%= t("home.mission") %></p>
+      <p><%= t("home.mission").html_safe %></p>
       <p><%= t("home.rule_text") %></p>
       <p><%= t("home.scoring") %></p><br>
 
@@ -32,7 +32,7 @@
 
     <div id="en-content" class="hide">
       <p><%= en_hello_text t("en-home.hello") %></p>
-      <p><%= t("en-home.mission") %></p>
+      <p><%= t("en-home.mission").html_safe %></p>
       <p><%= t("en-home.rule_text") %></p>
       <p><%= t("en-home.scoring") %></p><br>
 
