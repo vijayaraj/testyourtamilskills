@@ -20,7 +20,7 @@ ta:
 
   home:
     hello: வணக்கம்
-    mission: இத்தளம் நம் தமிழ்ச்சொல் வளத்திற்கு ஒரு தேர்வு. சில தமிழ்ச்சொற்களை, தமிழ் இலக்கண, இலக்கியங்களை மறக்காமலிருப்பதற்கும் நினைவுப்படுத்துவதற்கும் ஒரு சிறு முயற்சி.
+    mission: இத்தளம் நம் தமிழ்ச்சொல் வளத்திற்கு ஒரு தேர்வு. சில தமிழ்ச்சொற்களை, தமிழ் இலக்கண, இலக்கியங்களை மறக்காமலிருப்பதற்கும் நினைவுப்படுத்துவதற்கும் ஒரு சிறு முயற்சி. விடையளியைப் பற்றி மேலும் <a target="_blank" href="https://medium.com/@vijay/விடையளி-நம்-தமிழ்ச்சொல்-வளத்திற்கு-ஒரு-தேர்வு-554736a4fe2e">இங்கே</a>.
     rule_text: மொழிபெயர்ப்பு, சொல்வளம், இலக்கணம், இலக்கியம் என நான்கு பிரிவுகள், ஒவ்வொரு பிரிவிலும் ஐந்து நிலைகள் - முதல்நிலை எளிதாகவும், ஐந்தாவது கடினமாகவுமிருக்கும். ஒவ்வொரு நிலையிலும் கேள்வித்தொகுப்புகள் பட்டியலிடப்பட்டிருக்கும். ஒரு நிலையிலிருந்து அடுத்த நிலைக்குச் செல்ல அந்நிலையிலுள்ள ஒரு கேள்வித்தொகுப்பையாவது முடித்திருக்க வேண்டும். அவ்வளவே.
     scoring: ஒவ்வொரு கேள்வித்தொகுப்பிலும் 15 கேள்விகள். ஒரு சரியான பதில் = 1 புள்ளி. மொத்தம் 15 * 5 நிலைகள் = 75 புள்ளிகள். இதை வைத்து ஒரு தரவரிசைப்பட்டியல்.
     contribution: மேலும் நீங்கள், இத்தளத்தில் உங்கள் கேள்விகளைப் பதியலாம். ஏற்றுக்கொள்ளப்பட்டால், அவற்றிற்கு மற்றவர்கள் பதிலளிக்களாம். வாழ்த்துகள்.
@@ -28,9 +28,9 @@ ta:
 
   en-home:
     hello: Hi
-    mission: This is a small effort to test your skills in Tamil. Also to remind you, the forgotten and the less used words in the language.
-    rule_text: Three sections in the list - Translation, Vocabulary and Grammar. Each section has 5 levels - level one being easy to fifth being hard. Question sets are listed in each level. You will have to complete atleast one question set to move up a level.
-    scoring: There are 15 questions in each set. 1 right answer = 1 point. Totally, 15 * 5 = 75 points. And, a ranking table based on the score.
+    mission: This is a small effort to test our skills in Tamil. Also to remind, the forgotten words and the grammar rules in the language. More about Vidaiyali in this <a target="_blank" href="https://medium.com/@vijay/விடையளி-நம்-தமிழ்ச்சொல்-வளத்திற்கு-ஒரு-தேர்வு-554736a4fe2e">post</a>.
+    rule_text: Four sections in the list - Translation, Vocabulary, Grammar and Literature. Each section has 5 levels. You will have to complete atleast one question set to move up a level. There are 15 questions in each set. Totally, 75 points. And a ranking table based on the score.
+    scoring: ''
     contribution: Also, you can add your questions in the site. They will be available for other users to answer. Good luck!
     points: points
 
