@@ -4,14 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
 
-  before_filter lambda {
+  before_action lambda {
     flash.now[:notice] = flash[:notice].html_safe if flash[:notice]
     flash.now[:error] = flash[:error].html_safe if flash[:error]
   }
 
   helper_method :current_user_session, :current_user, :admin_or_superadmin?
-  before_filter :unset_current_user, :set_current_user
-  before_filter :deny_access
+  before_action :unset_current_user, :set_current_user
+  before_action :deny_access
 
   # Login check
   def deny_access

@@ -19,8 +19,8 @@ module ApplicationHelper
   def sidebar_list
     categories = sidebar_options.map do |option|
       if option[3]
-        content_tag(:a, option[0], href: option[2],
-                    :class => category_class(option)).html_safe
+        content_tag(:a, option[0], href: option[2], class:
+          category_class(option)).html_safe
       end
     end
     categories.compact

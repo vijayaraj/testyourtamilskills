@@ -47,20 +47,12 @@ class QuestionsController < ApplicationController
   end
 
   def rate
-    respond_to do |format|
-      if @question.update_attributes(rating_params)
-        format.html do
-          redirect_to question_set_path(@question_set.id),
-                      notice: I18n.t('notifications.success')
-        end
-        format.json { render json: { success: true } }
-      else
-        format.html do
-          redirect_to question_set_path(@question_set.id),
-                      flash: { error: I18n.t('notifications.error') }
-        end
-        format.json { render json: { success: false } }
-      end
+    if @question.update_attributes(rating_params)
+      redirect_to question_set_path(@question_set.id),
+                  notice: I18n.t('notifications.success')
+    else
+      redirect_to question_set_path(@question_set.id),
+                  flash: { error: I18n.t('notifications.error') }
     end
   end
 
@@ -111,11 +103,10 @@ class QuestionsController < ApplicationController
 
   def time_started?
     return if current_user.published_question_sets.include?(@question_set)
+    return if @user_question_set && @user_question_set.start_time
 
-    unless @user_question_set && @user_question_set.start_time
-      flash[:notice] = 'No access'
-      redirect_to root_path
-    end
+    flash[:notice] = 'No access'
+    redirect_to root_path
   end
 
   def question_params

@@ -14,20 +14,19 @@ class Identifier
   private
 
   def find_or_create_identity
-    Identity.where(provider: @auth.provider, uid: @auth.uid).
-      create_with(auth_data: @auth).
-      first_or_create!
+    Identity.where(provider: @auth.provider, uid: @auth.uid)
+      .create_with(auth_data: @auth)
+      .first_or_create!
   end
 
   def ensure_user(identity)
     @user ||= identity.user
     return @user if @user
 
-    @user = User.where(email: identity.email).
-      create_with(
-        name:      identity.name,
-        password:  Devise.friendly_token[0, 20]
-      ).first_or_create!
+    @user = User.where(email: identity.email).create_with(
+      name: identity.name,
+      password:  Devise.friendly_token[0, 20]
+    ).first_or_create!
   end
 
   def link(identity, user)

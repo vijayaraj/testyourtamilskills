@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
                                     class_name: 'QuestionSet',
                                     source: 'question_set'
   has_many :user_scores
-  has_many :question_ratings, class_name: :'UserQuestionRating'
+  has_many :question_ratings, class_name: :UserQuestionRating
 
   def self.current
     Thread.current[:user]
@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
   def category_score(category)
     category.levels.reduce(0) do |category_score, level|
       category_score += score(category, level).to_i
+      category_score
     end
   end
 
@@ -88,12 +89,13 @@ class User < ActiveRecord::Base
 
   def points(category)
     category.levels.reduce(0) do |points, level|
-      points += score(category, level).to_i; points
+      points += score(category, level).to_i
+      points
     end
   end
 
   def update_user_scores(category)
-    user_score = self.user_scores.find_or_create_by(category_id: category.id)
+    user_score = user_scores.find_or_create_by(category_id: category.id)
     completed = user_question_sets.filter_by_category(category.id).where(
       status: UserQuestionSet::STATUS.invert[:completed])
 

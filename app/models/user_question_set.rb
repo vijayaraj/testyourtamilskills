@@ -22,10 +22,10 @@ class UserQuestionSet < ActiveRecord::Base
     joins(:question_set).where('question_sets.level_id = ?', level_id)
   }
 
-  scope :answered, -> { where(status: STATUS.invert[:completed])}
+  scope :answered, -> { where(status: STATUS.invert[:completed]) }
   scope :answered_by, lambda { |question_set_id|
-    where("question_set_id = ? and status = ?",
-      question_set_id, STATUS.invert[:completed])
+    where('question_set_id = ? &&
+      status = ?', question_set_id, STATUS.invert[:completed])
   }
 
   scope :filter_by_category_and_level, lambda { |category_id, level_id|
@@ -59,7 +59,7 @@ class UserQuestionSet < ActiveRecord::Base
       question = question_set.questions.find_by_id(question_id.to_i)
       if question.answer.eql?(answer)
         update_stats(question)
-        self.score = self.score + 1
+        self.score = score + 1
       end
     end
   end

@@ -1,10 +1,4 @@
 Documentation:
-  Enabled: true
-
-AllCops:
-  Exclude:
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'script/**/*'
-    - 'bin/*'
-    - 'test/*'
+  Enabled: false
+Metrics/ClassLength:
+  Max: 175
