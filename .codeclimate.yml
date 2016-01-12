@@ -29,5 +29,6 @@ exclude_paths:
 - config/**/*
 - db/**/*
 - spec/**/*
+- test/**/*
 - vendor/**/*
 - bin/**/*

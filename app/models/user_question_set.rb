@@ -47,13 +47,13 @@ class UserQuestionSet < ActiveRecord::Base
 
   def set_default_params
     self.status = UserQuestionSet::STATUS.invert[:in_progress]
-    self.start_time = Time.now
+    self.start_time = Time.zone.now
     self.score = 0
   end
 
   def calculate_score
     self.status = UserQuestionSet::STATUS.invert[:completed]
-    self.end_time = Time.now
+    self.end_time = Time.zone.now
     self.score = 0
     (answers || {}).each do |question_id, answer|
       question = question_set.questions.find_by_id(question_id.to_i)
