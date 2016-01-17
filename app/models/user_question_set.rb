@@ -24,12 +24,12 @@ class UserQuestionSet < ActiveRecord::Base
 
   scope :answered, -> { where(status: STATUS.invert[:completed]) }
   scope :answered_by, lambda { |question_set_id|
-    where('question_set_id = ? &&
+    where('question_set_id = ? and
       status = ?', question_set_id, STATUS.invert[:completed])
   }
 
   scope :filter_by_category_and_level, lambda { |category_id, level_id|
-    joins(:question_set).where('question_sets.category_id = ? &&
+    joins(:question_set).where('question_sets.category_id = ? and
       question_sets.level_id = ?', category_id, level_id)
   }
 
